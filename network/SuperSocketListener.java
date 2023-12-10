@@ -16,11 +16,13 @@ public class SuperSocketListener implements ActionListener{
     public SuperSocketListener(String strIP, int intPort) {
         blnServer = false;
         ssm = new SuperSocketMaster(strIP, intPort, this);
+        ssm.connect();
     }
 
     public SuperSocketListener(int intPort) {
         blnServer = true;
         ssm = new SuperSocketMaster(intPort, this);
+        ssm.connect();
     }
     
 }
