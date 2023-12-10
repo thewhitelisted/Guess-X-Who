@@ -1,13 +1,15 @@
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-
-import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import network.SuperSocketMaster;
 
 public class Main implements ActionListener{
     JFrame main_frame = new JFrame("Guess X Who");
@@ -25,6 +27,14 @@ public class Main implements ActionListener{
     // question panel will contain the question box, and the question input
     JFrame question_frame = new JFrame("Ask a question");
     JPanel question_panel = new JPanel();
+
+    // JMenuBar
+    JMenuBar menu_bar = new JMenuBar();
+    JMenu menu = new JMenu("Game");
+    JMenuItem create_game = new JMenuItem("Create Game");
+    JMenuItem join_game = new JMenuItem("Join Game");
+
+    SuperSocketMaster ssm = null;
 
     // action listener
     public void actionPerformed(ActionEvent e) {
@@ -56,6 +66,7 @@ public class Main implements ActionListener{
         chat_panel.setLayout(null);
         chat_box.setBounds(0, 0, 200, 525);
         chat_box.setEditable(false);
+        chat_box.setFocusable(false);
         chat_panel.add(chat_box);
         chat_input.setBounds(0, 525, 200, 50);
         chat_panel.add(chat_input);
