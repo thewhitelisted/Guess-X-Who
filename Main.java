@@ -80,7 +80,7 @@ public class Main implements ActionListener{
 
     public Main() {
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main_frame.setPreferredSize(new Dimension(800, 600));
+        main_frame.setPreferredSize(new Dimension(800, 635));
         main_frame.setVisible(true);
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
