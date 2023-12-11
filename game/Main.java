@@ -1,3 +1,6 @@
+package game;
+
+
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -14,53 +17,58 @@ import javax.swing.JTextField;
 import network.SuperSocketListener;
 
 public class Main implements ActionListener{
-    JFrame main_frame = new JFrame("Guess X Who");
-    JPanel main_panel = new JPanel();
+    private JFrame main_frame = new JFrame("Guess X Who");
+    private JPanel main_panel = new JPanel();
 
     // connect and create frames
-    JFrame connect_frame = new JFrame("Connect to a game");
-    JPanel connect_panel = new JPanel();
-    JFrame create_frame = new JFrame("Create a game");
-    JPanel create_panel = new JPanel();
+    private JFrame connect_frame = new JFrame("Connect to a game");
+    private JPanel connect_panel = new JPanel();
+    private JFrame create_frame = new JFrame("Create a game");
+    private JPanel create_panel = new JPanel();
 
     // connect and create panel components
-    JLabel connect_ip_label = new JLabel("IP Address");
-    JLabel connect_port_label = new JLabel("Port Number");
-    JLabel create_port_label = new JLabel("Port Number");
-    JTextField connect_ip = new JTextField(50);
-    JTextField connect_port = new JTextField(50);
-    JTextField create_port = new JTextField(50);
-    JButton connect_button = new JButton("Connect");
-    JButton create_button = new JButton("Create");
+    private JLabel connect_ip_label = new JLabel("IP Address");
+    private JLabel connect_port_label = new JLabel("Port Number");
+    private JLabel create_port_label = new JLabel("Port Number");
+    private JTextField connect_ip = new JTextField(50);
+    private JTextField connect_port = new JTextField(50);
+    private JTextField create_port = new JTextField(50);
+    private JButton connect_button = new JButton("Connect");
+    private JButton create_button = new JButton("Create");
 
     // game panel will contain the game board, and the character cards
     // TODO: add game board and character cards
-    JPanel game_panel = new JPanel();
+    public JPanel game_panel = new JPanel();
 
     // chat panel will contain the chat box, and the chat input
-    JPanel chat_panel = new JPanel();
-    JTextArea chat_box = new JTextArea(10, 50);
-    JTextField chat_input = new JTextField(50);
+    public JPanel chat_panel = new JPanel();
+    public static JTextArea chat_box = new JTextArea(10, 50);
+    public JTextField chat_input = new JTextField(50);
 
     // question panel will contain the question box, and the question input
-    JFrame question_frame = new JFrame("Ask a question");
-    JPanel question_panel = new JPanel();
+    private JFrame question_frame = new JFrame("Ask a question");
+    private JPanel question_panel = new JPanel();
 
     // JMenuBar
-    JMenuBar menu_bar = new JMenuBar();
-    JMenu menu = new JMenu("Game");
-    JMenuItem create_game = new JMenuItem("Create Game");
-    JMenuItem join_game = new JMenuItem("Join Game");
+    private JMenuBar menu_bar = new JMenuBar();
+    private JMenu menu = new JMenu("Game");
+    private JMenuItem create_game = new JMenuItem("Create Game");
+    private JMenuItem join_game = new JMenuItem("Join Game");
 
     // SuperSocketListener
-    SuperSocketListener ssl;
+    private SuperSocketListener ssl;
 
     // action listener
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chat_input) {
-            String input = chat_input.getText();
-            chat_box.append(input + "\n");
-            chat_input.setText("");
+            // send chat message
+            if (ssl != null) {
+                ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + "," + chat_input.getText());
+                chat_box.append("You: " + chat_input.getText() + "\n");
+                chat_input.setText("");
+            } else {
+                chat_box.append("You are not connected to a game.\n");
+            }
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
             create_frame.setVisible(true);
@@ -70,10 +78,12 @@ public class Main implements ActionListener{
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
+            System.out.println("Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText());
             connect_frame.setVisible(false);
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
+            System.out.println("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText());
             create_frame.setVisible(false);
         }
     }

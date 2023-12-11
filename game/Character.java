@@ -1,3 +1,4 @@
+package game;
 public class Character {
     // Character defining attributes
     public String strName;
