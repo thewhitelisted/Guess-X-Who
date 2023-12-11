@@ -1,10 +1,11 @@
 package game;
 public class Character {
+
     // Character defining attributes
     public String strName;
-    public String strHair;
-    public String strEyes;
-    public String strColour;
+    HairColour hairColour;
+    EyeColour eyeColour;
+    boolean hasHat;
 
     // Character constructor
     public Character(String name) {
