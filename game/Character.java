@@ -70,10 +70,30 @@ public class Character {
     public HairColour hairColour;
     public EyeColour eyeColour;
     public boolean hasHat;
+    public HatType hatType;
+    public boolean hasGlasses;
+    public GlassesType glassesType;
+    public boolean hasFacialHair;
+    public FacialHair facialHair;
+    public SkinColour skinColour;
+    public HairLength hairLength;
+    public Expression expression;
+    public FaceType faceType;
 
     // Character constructor
-    public Character(String name) {
-        // TODO: if statement to determine which character is being created
-        strName = name;
+    public Character(String name, HairColour hairColour, EyeColour eyeColour, boolean hasHat, HatType hatType, boolean hasGlasses, GlassesType glassesType, boolean hasFacialHair, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType) {
+        this.strName = name;
+        this.hairColour = hairColour;
+        this.eyeColour = eyeColour;
+        this.hasHat = hasHat;
+        this.hatType = hatType;
+        this.hasGlasses = hasGlasses;
+        this.glassesType = glassesType;
+        this.hasFacialHair = hasFacialHair;
+        this.facialHair = facialHair;
+        this.skinColour = skinColour;
+        this.hairLength = hairLength;
+        this.expression = expression;
+        this.faceType = faceType;
     }
 }
