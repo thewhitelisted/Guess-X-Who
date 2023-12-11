@@ -63,7 +63,7 @@ public class Main implements ActionListener{
         if (e.getSource() == chat_input) {
             // send chat message
             if (ssl != null) {
-                ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + "," + chat_input.getText());
+                ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + ": " + chat_input.getText());
                 chat_box.append("You: " + chat_input.getText() + "\n");
                 chat_input.setText("");
             } else {

@@ -14,14 +14,8 @@ public class SuperSocketListener implements ActionListener{
         if (e.getSource() == ssm) {
             String strMessage = ssm.readText();
             if (strMessage != null) {
-                String[] strMessageSplit = strMessage.split(",");
-                if (Integer.parseInt(strMessageSplit[0]) == CHAT) {
-                    // chat message
-                    String strSendMessage[] = new String[strMessageSplit.length - 2];
-                    for (int i = 2; i < strMessageSplit.length; i++) {
-                        strSendMessage[i - 2] = strMessageSplit[i];
-                    }
-                    Main.chat_box.append(strMessageSplit[1] + ": " + String.join(",", strSendMessage) + "\n");
+                if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
+                    Main.chat_box.append(strMessage.substring(2) + "\n");
                 }
             }
         }
