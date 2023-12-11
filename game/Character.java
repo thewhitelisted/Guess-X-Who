@@ -12,10 +12,57 @@ public class Character {
         BLACK,
         BROWN,
         BLONDE,
-        RED,
-        GREY,
         WHITE,
         BALD
+    }
+
+    public enum SkinColour {
+        WHITE,
+        BLACK,
+        BROWN,
+    }
+
+    public enum HairLength {
+        BALD,
+        SHORT,
+        MEDIUM,
+        LONG,
+    }
+
+    public enum Expression {
+        HAPPY,
+        SAD,
+        ANGRY,
+        NEUTRAL,
+    }
+
+    public enum HatType {
+        NONE,
+        CAP,
+        TOPHAT,
+    }
+
+    public enum GlassesType {
+        NONE,
+        GLASSES,
+        SUNGLASSES,
+    }
+
+    public enum FaceType {
+        CIRCLE,
+        SQUARE,
+        OVAL,
+    }
+
+    public enum Gender {
+        MALE,
+        FEMALE,
+    }
+
+    public enum FacialHair {
+        NONE,
+        MOUSTACHE,
+        BEARD,
     }
 
     // Character defining attributes

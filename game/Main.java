@@ -89,13 +89,15 @@ public class Main implements ActionListener{
     }
 
     public Main() {
+        main_panel.setPreferredSize(new Dimension(1280, 720));
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        main_frame.setPreferredSize(new Dimension(800, 635));
-        main_frame.setVisible(true);
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
+        main_frame.pack();
+        main_frame.setResizable(false);
+        main_frame.setVisible(true);
 
-        connect_panel.setPreferredSize(new Dimension(300,300));
+        connect_panel.setPreferredSize(new Dimension(300, 300));
         connect_frame.setContentPane(connect_panel);
         connect_frame.pack();
         connect_frame.setResizable(false);
@@ -139,27 +141,22 @@ public class Main implements ActionListener{
 
         main_panel.setBounds(0, 0, 800, 600);
         main_panel.setLayout(null);
-        game_panel.setPreferredSize(new Dimension(600, 600));
+        game_panel.setPreferredSize(new Dimension(720, 720));
         main_panel.add(game_panel);
-        chat_panel.setPreferredSize(new Dimension(200, 600));
+        chat_panel.setPreferredSize(new Dimension(560, 720));
         main_panel.add(chat_panel);
 
-        game_panel.setBounds(0, 0, 600, 600);
+        game_panel.setBounds(0, 0, 720, 720);
         game_panel.setLayout(null);
 
-        chat_panel.setBounds(600, 0, 200, 600);
+        chat_panel.setBounds(720, 0, 560, 720);
         chat_panel.setLayout(null);
-        chat_box.setBounds(0, 0, 200, 525);
+        chat_box.setBounds(0, 10, 560, 600);
         chat_box.setEditable(false);
-        chat_box.setFocusable(false);
         chat_panel.add(chat_box);
-        chat_input.setBounds(0, 525, 200, 50);
-        chat_panel.add(chat_input);
-        chat_input.grabFocus();
+        chat_input.setBounds(0, 635, 560, 50);
         chat_input.addActionListener(this);
-
-        main_frame.pack();
-        main_frame.setResizable(false);
+        chat_panel.add(chat_input);
     }
 
     public static void main(String[] args) {
