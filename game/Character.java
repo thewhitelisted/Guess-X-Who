@@ -1,6 +1,23 @@
 package game;
 public class Character {
 
+    public enum EyeColour {
+        BLACK,
+        BROWN,
+        BLUE,
+        GREEN,
+    }
+    
+    public enum HairColour {
+        BLACK,
+        BROWN,
+        BLONDE,
+        RED,
+        GREY,
+        WHITE,
+        BALD
+    }
+
     // Character defining attributes
     public String strName;
     HairColour hairColour;
