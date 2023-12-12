@@ -25,7 +25,6 @@ public class Character {
     public enum HairLength {
         BALD,
         SHORT,
-        MEDIUM,
         LONG,
     }
 

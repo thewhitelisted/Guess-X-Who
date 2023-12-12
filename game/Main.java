@@ -93,10 +93,7 @@ public class Main implements ActionListener{
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
-        main_frame.pack();
-        main_frame.setResizable(false);
-        main_frame.setVisible(true);
-
+        
         connect_panel.setPreferredSize(new Dimension(300, 300));
         connect_frame.setContentPane(connect_panel);
         connect_frame.pack();
@@ -157,6 +154,10 @@ public class Main implements ActionListener{
         chat_input.setBounds(0, 635, 560, 50);
         chat_input.addActionListener(this);
         chat_panel.add(chat_input);
+        
+        main_frame.pack();
+        main_frame.setResizable(false);
+        main_frame.setVisible(true);
     }
 
     public static void main(String[] args) {
