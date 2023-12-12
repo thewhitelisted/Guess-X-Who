@@ -69,7 +69,6 @@ public class Character {
     public String strName;
     public HairColour hairColour;
     public EyeColour eyeColour;
-    public boolean hasHat;
     public HatType hatType;
     public boolean hasGlasses;
     public GlassesType glassesType;
@@ -81,11 +80,10 @@ public class Character {
     public FaceType faceType;
 
     // Character constructor
-    public Character(String name, HairColour hairColour, EyeColour eyeColour, boolean hasHat, HatType hatType, boolean hasGlasses, GlassesType glassesType, boolean hasFacialHair, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType) {
+    public Character(String name, HairColour hairColour, EyeColour eyeColour, HatType hatType, boolean hasGlasses, GlassesType glassesType, boolean hasFacialHair, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType) {
         this.strName = name;
         this.hairColour = hairColour;
         this.eyeColour = eyeColour;
-        this.hasHat = hasHat;
         this.hatType = hatType;
         this.hasGlasses = hasGlasses;
         this.glassesType = glassesType;
