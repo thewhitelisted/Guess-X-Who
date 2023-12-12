@@ -67,7 +67,7 @@ public class Main implements ActionListener{
                 chat_box.append("You: " + chat_input.getText() + "\n");
                 chat_input.setText("");
             } else {
-                chat_box.append("You are not connected to a game.\n");
+                chat_box.append("[SYS] You are not connected to a game.\n");
             }
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
@@ -78,12 +78,12 @@ public class Main implements ActionListener{
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
-            System.out.println("Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText());
+            chat_box.append("Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText());
             connect_frame.setVisible(false);
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
-            System.out.println("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText());
+            chat_box.append("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText());
             create_frame.setVisible(false);
         }
     }
@@ -93,7 +93,7 @@ public class Main implements ActionListener{
         main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
-        
+
         connect_panel.setPreferredSize(new Dimension(300, 300));
         connect_frame.setContentPane(connect_panel);
         connect_frame.pack();
@@ -136,7 +136,7 @@ public class Main implements ActionListener{
         connect_button.addActionListener(this);
         create_button.addActionListener(this);
 
-        main_panel.setBounds(0, 0, 800, 600);
+        main_panel.setBounds(0, 0, 1280, 720);
         main_panel.setLayout(null);
         game_panel.setPreferredSize(new Dimension(720, 720));
         main_panel.add(game_panel);
