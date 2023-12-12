@@ -46,7 +46,6 @@ public class Main implements ActionListener{
     public JTextField chat_input = new JTextField(50);
 
     // question panel will contain the question box, and the question input
-    private JFrame question_frame = new JFrame("Ask a question");
     private JPanel question_panel = new JPanel();
 
     // JMenuBar
@@ -136,24 +135,32 @@ public class Main implements ActionListener{
         connect_button.addActionListener(this);
         create_button.addActionListener(this);
 
-        main_panel.setBounds(0, 0, 800, 600);
+        main_panel.setBounds(0, 0, 1280, 720);
         main_panel.setLayout(null);
-        game_panel.setPreferredSize(new Dimension(720, 720));
+        
         main_panel.add(game_panel);
-        chat_panel.setPreferredSize(new Dimension(560, 720));
         main_panel.add(chat_panel);
+        main_panel.add(question_panel);
 
         game_panel.setBounds(0, 0, 720, 720);
+        game_panel.setPreferredSize(new Dimension(720, 720));
         game_panel.setLayout(null);
 
-        chat_panel.setBounds(720, 0, 560, 720);
+        chat_panel.setBounds(720, 360, 560, 360);
+        chat_panel.setPreferredSize(new Dimension(560, 360));
         chat_panel.setLayout(null);
+
+        question_panel.setBounds(720, 0, 560, 360);
+        question_panel.setPreferredSize(new Dimension(560, 360));
+        
         chat_box.setBounds(0, 10, 560, 600);
         chat_box.setEditable(false);
+
         chat_panel.add(chat_box);
         chat_input.setBounds(0, 635, 560, 50);
         chat_input.addActionListener(this);
         chat_panel.add(chat_input);
+        
         
         main_frame.pack();
         main_frame.setResizable(false);
