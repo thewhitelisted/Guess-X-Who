@@ -8,7 +8,6 @@ public class Character {
     // gender facial hair
 
     public enum EyeColour {
-        BLACK,
         BROWN,
         BLUE,
         GREEN,
@@ -17,9 +16,7 @@ public class Character {
     public enum HairColour {
         BLACK,
         BROWN,
-        BLONDE,
-        WHITE,
-        BALD
+        BLONDE
     }
 
     public enum SkinColour {

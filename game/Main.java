@@ -38,15 +38,15 @@ public class Main implements ActionListener{
 
     // game panel will contain the game board, and the character cards
     // TODO: add game board and character cards
-    public JPanel game_panel = new JPanel();
+    public GamePanel game_panel = new GamePanel();
 
     // chat panel will contain the chat box, and the chat input
-    public JPanel chat_panel = new JPanel();
+    public ChatPanel chat_panel = new ChatPanel();
     public static JTextArea chat_box = new JTextArea(10, 50);
     public JTextField chat_input = new JTextField(50);
 
     // question panel will contain the question box, and the question input
-    private JPanel question_panel = new JPanel();
+    private QuestionPanel question_panel = new QuestionPanel();
 
     // JMenuBar
     private JMenuBar menu_bar = new JMenuBar();
