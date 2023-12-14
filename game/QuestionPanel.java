@@ -3,9 +3,6 @@ package game;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.beans.Expression;
-
-import javax.swing.DefaultComboBoxModel;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -22,9 +19,8 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
 
-
-    JComboBox mainQuestion = new JComboBox(strMainQuestions);
-    JComboBox subQuestion = new JComboBox();
+    JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
+    JComboBox<String> subQuestion = new JComboBox<>();
 
     QuestionPanel(){
         this.setLayout(null);
@@ -42,38 +38,68 @@ public class QuestionPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainQuestion){
-            if (mainQuestion.getSelectedItem().equals("Eye Color")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strEyeQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Hair Color")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strHairQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Skin Color")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strSkinQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Hair Length")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strLengthQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Expression")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strExpressionQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Hat Type")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strHatQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Glasses Type")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strGlassesQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Face Shape")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strFaceQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Gender")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strGenderQuestions);
-            }else if (mainQuestion.getSelectedItem().equals("Facial Hair")){
-                subQuestion.removeAllItems();
-                subQuestion.addItem(strFacialQuestions);
+            switch (mainQuestion.getSelectedItem().toString()) {
+                case "Eye Color":
+                    subQuestion.removeAllItems();
+                    for (String str : strEyeQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Hair Color":
+                    subQuestion.removeAllItems();
+                    for (String str : strHairQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Skin Color":
+                    subQuestion.removeAllItems();
+                    for (String str : strSkinQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Hair Length":
+                    subQuestion.removeAllItems();
+                    for (String str : strLengthQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Expression":
+                    subQuestion.removeAllItems();
+                    for (String str : strExpressionQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Hat Type":
+                    subQuestion.removeAllItems();
+                    for (String str : strHatQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Glasses Type":
+                    subQuestion.removeAllItems();
+                    for (String str : strGlassesQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Face Shape":
+                    subQuestion.removeAllItems();
+                    for (String str : strFaceQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Gender":
+                    subQuestion.removeAllItems();
+                    for (String str : strGenderQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Facial Hair":
+                    subQuestion.removeAllItems();
+                    for (String str : strFacialQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
             }
-
         }
     }
 }
