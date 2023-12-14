@@ -153,7 +153,7 @@ public class Main implements ActionListener{
         question_panel.setBounds(720, 0, 560, 360);
         question_panel.setPreferredSize(new Dimension(560, 360));
         
-        chat_box.setBounds(0, 0, 560, 335);
+        chat_box.setBounds(0, 0, 560, 325);
         chat_box.setEditable(false);
 
         chat_panel.add(chat_box);

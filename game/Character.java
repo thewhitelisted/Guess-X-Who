@@ -1,5 +1,11 @@
 package game;
+
+import java.awt.image.BufferedImage;
+
 public class Character {
+    // file format: name, file, skin colour, hair colour, eye colour, 
+    // hair length, expression, hat type, glasses type, face type, 
+    // gender facial hair
 
     public enum EyeColour {
         BLACK,
@@ -19,7 +25,7 @@ public class Character {
     public enum SkinColour {
         WHITE,
         BLACK,
-        BROWN,
+        BROWN
     }
 
     public enum HairLength {
@@ -66,10 +72,10 @@ public class Character {
 
     // Character defining attributes
     public String strName;
+    public BufferedImage imgIcon;
     public HairColour hairColour;
     public EyeColour eyeColour;
     public HatType hatType;
-    public boolean hasGlasses;
     public GlassesType glassesType;
     public boolean hasFacialHair;
     public FacialHair facialHair;
@@ -77,20 +83,22 @@ public class Character {
     public HairLength hairLength;
     public Expression expression;
     public FaceType faceType;
+    public Gender gender;
+    public boolean isFlipped = false;
 
     // Character constructor
-    public Character(String name, HairColour hairColour, EyeColour eyeColour, HatType hatType, boolean hasGlasses, GlassesType glassesType, boolean hasFacialHair, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType) {
+    public Character(String name, BufferedImage imgIcon, HairColour hairColour, EyeColour eyeColour, HatType hatType, GlassesType glassesType, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType, Gender gender) {
         this.strName = name;
+        this.imgIcon = imgIcon;
         this.hairColour = hairColour;
         this.eyeColour = eyeColour;
         this.hatType = hatType;
-        this.hasGlasses = hasGlasses;
         this.glassesType = glassesType;
-        this.hasFacialHair = hasFacialHair;
         this.facialHair = facialHair;
         this.skinColour = skinColour;
         this.hairLength = hairLength;
         this.expression = expression;
         this.faceType = faceType;
+        this.gender = gender;
     }
 }
