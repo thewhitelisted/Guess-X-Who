@@ -38,63 +38,54 @@ public class QuestionPanel extends JPanel implements ActionListener{
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainQuestion){
+            subQuestion.removeAllItems();
             switch (mainQuestion.getSelectedItem().toString()) {
                 case "Eye Color":
-                    subQuestion.removeAllItems();
                     for (String str : strEyeQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Color":
-                    subQuestion.removeAllItems();
                     for (String str : strHairQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Skin Color":
-                    subQuestion.removeAllItems();
                     for (String str : strSkinQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Length":
-                    subQuestion.removeAllItems();
                     for (String str : strLengthQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Expression":
-                    subQuestion.removeAllItems();
                     for (String str : strExpressionQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hat Type":
-                    subQuestion.removeAllItems();
                     for (String str : strHatQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Glasses Type":
-                    subQuestion.removeAllItems();
                     for (String str : strGlassesQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Face Shape":
-                    subQuestion.removeAllItems();
                     for (String str : strFaceQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Gender":
-                    subQuestion.removeAllItems();
                     for (String str : strGenderQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Facial Hair":
-                    subQuestion.removeAllItems();
                     for (String str : strFacialQuestions){
                         subQuestion.addItem(str);
                     }
