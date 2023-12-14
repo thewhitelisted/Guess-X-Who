@@ -77,12 +77,13 @@ public class Main implements ActionListener{
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
-            chat_box.append("Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText());
+            ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
             connect_frame.setVisible(false);
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
-            chat_box.append("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText());
+            chat_box.append("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText() + "\n");
+            ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
             create_frame.setVisible(false);
         }
     }

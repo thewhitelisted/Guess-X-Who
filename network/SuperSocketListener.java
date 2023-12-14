@@ -14,7 +14,9 @@ public class SuperSocketListener implements ActionListener{
         if (e.getSource() == ssm) {
             String strMessage = ssm.readText();
             if (strMessage != null) {
-                if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
+                if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
+                    Main.chat_box.append("User: " + strMessage.substring(2) +  " has joined." + "\n");
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
                 }
             }
