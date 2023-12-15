@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import game.Main;
 
 public class SuperSocketListener implements ActionListener{
-    public static final int CONNECT=0, DISCONNECT=1, PICK=2, QUESTION=3, ANSWER=4, CHAT=5;
+    public static final int CONNECT=0, PICK=1, QUESTION=2, ANSWER=3, CHAT=4;
     public boolean blnServer;
     public SuperSocketMaster ssm;
 
@@ -15,7 +15,7 @@ public class SuperSocketListener implements ActionListener{
             String strMessage = ssm.readText();
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
-                    Main.chat_box.append("User: " + strMessage.substring(2) +  " has joined." + "\n");
+                    Main.chat_box.append("[SYS] User: " + strMessage.substring(2) +  " has joined." + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
                 }

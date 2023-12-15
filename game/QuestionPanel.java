@@ -20,7 +20,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
 
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
-    JComboBox<String> subQuestion = new JComboBox<>();
+    JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
     QuestionPanel(){
         this.setLayout(null);
