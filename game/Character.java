@@ -21,6 +21,7 @@ public class Character {
     }
     
     public enum HairColour {
+        BALD,
         BLACK,
         BROWN,
         BLONDE
@@ -60,6 +61,7 @@ public class Character {
     public enum FaceType {
         CIRCLE,
         SQUARE,
+        TRIANGLE,
         OVAL,
     }
 
