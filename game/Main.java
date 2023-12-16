@@ -4,6 +4,8 @@ package game;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -16,7 +18,7 @@ import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import network.SuperSocketListener;
 
-public class Main implements ActionListener{
+public class Main implements ActionListener, WindowListener {
     private JFrame main_frame = new JFrame("Guess X Who");
     private JPanel main_panel = new JPanel();
 
@@ -41,7 +43,7 @@ public class Main implements ActionListener{
     public GamePanel game_panel = new GamePanel();
 
     // chat panel will contain the chat box, and the chat input
-    public ChatPanel chat_panel = new ChatPanel();
+    public JPanel chat_panel = new JPanel();
     public static JTextArea chat_box = new JTextArea(10, 50);
     public JTextField chat_input = new JTextField(50);
 
@@ -53,6 +55,7 @@ public class Main implements ActionListener{
     private JMenu menu = new JMenu("Game");
     private JMenuItem create_game = new JMenuItem("Create Game");
     private JMenuItem join_game = new JMenuItem("Join Game");
+    private JMenuItem exit_game = new JMenuItem("Exit Game");
 
     // SuperSocketListener
     private SuperSocketListener ssl;
@@ -74,6 +77,8 @@ public class Main implements ActionListener{
         } else if (e.getSource() == join_game) {
             // create dialog box to get ip address and port number
             connect_frame.setVisible(true);
+        } else if (e.getSource() == exit_game) {
+            ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
@@ -83,14 +88,47 @@ public class Main implements ActionListener{
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
             chat_box.append("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText() + "\n");
-            ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
             create_frame.setVisible(false);
         }
     }
 
+    // window listener
+    public void windowClosing(WindowEvent windowEvent) {
+        if (ssl != null) {
+            ssl.ssm.disconnect();
+            ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
+        }
+        System.exit(0);
+    }
+
+    @Override
+    public void windowOpened(WindowEvent e) {
+    }
+
+    @Override
+    public void windowClosed(WindowEvent e) {
+    }
+
+    @Override
+    public void windowIconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeiconified(WindowEvent e) {
+    }
+
+    @Override
+    public void windowActivated(WindowEvent e) {
+    }
+
+    @Override
+    public void windowDeactivated(WindowEvent e) {
+    }
+
     public Main() {
         main_panel.setPreferredSize(new Dimension(1280, 720));
-        main_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        main_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        main_frame.addWindowListener(this);
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
 
@@ -128,11 +166,13 @@ public class Main implements ActionListener{
 
         menu.add(create_game);
         menu.add(join_game);
+        menu.add(exit_game);
         menu_bar.add(menu);
         main_frame.setJMenuBar(menu_bar);
 
         create_game.addActionListener(this);
         join_game.addActionListener(this);
+        exit_game.addActionListener(this);
         connect_button.addActionListener(this);
         create_button.addActionListener(this);
 

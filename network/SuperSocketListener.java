@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 import game.Main;
 
 public class SuperSocketListener implements ActionListener{
-    public static final int CONNECT=0, PICK=1, QUESTION=2, ANSWER=3, CHAT=4;
+    public static final int CONNECT=0, DISCONNECT=1, PICK=2, QUESTION=3, ANSWER=4, CHAT=5;
     public boolean blnServer;
     public SuperSocketMaster ssm;
 
