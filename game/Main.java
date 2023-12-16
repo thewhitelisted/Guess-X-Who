@@ -14,8 +14,11 @@ import javax.swing.JMenu;
 import javax.swing.JMenuBar;
 import javax.swing.JMenuItem;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.text.DefaultCaret;
+
 import network.SuperSocketListener;
 
 public class Main implements ActionListener, WindowListener {
@@ -43,9 +46,10 @@ public class Main implements ActionListener, WindowListener {
     public GamePanel game_panel = new GamePanel();
 
     // chat panel will contain the chat box, and the chat input
-    public JPanel chat_panel = new JPanel();
-    public static JTextArea chat_box = new JTextArea(10, 50);
+    public static JTextArea chat_box = new JTextArea();
     public JTextField chat_input = new JTextField(50);
+    public JPanel chat_panel = new JPanel();
+    public JScrollPane chat_scroll = new JScrollPane(chat_box);
 
     // question panel will contain the question box, and the question input
     private QuestionPanel question_panel = new QuestionPanel();
@@ -70,6 +74,7 @@ public class Main implements ActionListener, WindowListener {
                 chat_input.setText("");
             } else {
                 chat_box.append("[SYS] You are not connected to a game.\n");
+                chat_input.setText("");
             }
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
@@ -91,7 +96,7 @@ public class Main implements ActionListener, WindowListener {
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
-            chat_box.append("Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText() + "\n");
+            chat_box.append("[SYS] Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText() + "\n");
             create_frame.setVisible(false);
         }
     }
@@ -199,13 +204,15 @@ public class Main implements ActionListener, WindowListener {
         question_panel.setBounds(720, 0, 560, 360);
         question_panel.setPreferredSize(new Dimension(560, 360));
         
-        chat_box.setBounds(0, 0, 560, 325);
+        chat_scroll.setBounds(0, 0, 560, 325);
         chat_box.setEditable(false);
 
-        chat_panel.add(chat_box);
+        chat_panel.add(chat_scroll);
         chat_input.setBounds(0, 325, 560, 35);
         chat_input.addActionListener(this);
         chat_panel.add(chat_input);
+        DefaultCaret caret = (DefaultCaret)chat_box.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
         
         
         main_frame.pack();
