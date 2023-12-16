@@ -79,10 +79,14 @@ public class Main implements ActionListener, WindowListener {
             connect_frame.setVisible(true);
         } else if (e.getSource() == exit_game) {
             ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
+            chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() +  " has left." + "\n");
+            ssl.ssm.disconnect();
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
             ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
+            chat_box.append("[SYS] Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText() + "\n");
+            chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() + " has joined.\n");
             connect_frame.setVisible(false);
         } else if (e.getSource() == create_button) {
             // create server
@@ -93,10 +97,11 @@ public class Main implements ActionListener, WindowListener {
     }
 
     // window listener
+    @Override
     public void windowClosing(WindowEvent windowEvent) {
         if (ssl != null) {
-            ssl.ssm.disconnect();
             ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
+            ssl.ssm.disconnect();
         }
         System.exit(0);
     }
