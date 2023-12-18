@@ -68,15 +68,16 @@ public class Main implements ActionListener, WindowListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chat_input) {
             // send chat message
-            if (ssl == null && chat_input.getText().length() > 0) {
+            if (chat_input.getText().length() > 0) {
+                return;
+            }
+            if (ssl == null) {
                 chat_box.append("[SYS] You are not connected to a game.\n");
                 chat_input.setText("");
             }
-            if (chat_input.getText().length() > 0) {
-                ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + ": " + chat_input.getText());
-                chat_box.append("You: " + chat_input.getText() + "\n");
-                chat_input.setText("");
-            } 
+            ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + ": " + chat_input.getText());
+            chat_box.append("You: " + chat_input.getText() + "\n");
+            chat_input.setText(""); 
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
             create_frame.setVisible(true);
