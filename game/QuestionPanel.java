@@ -3,6 +3,8 @@ package game;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
 
@@ -22,16 +24,21 @@ public class QuestionPanel extends JPanel implements ActionListener{
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
+    JButton submitButton = new JButton("Submit");
+
     QuestionPanel(){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(560, 360));
 
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
+        submitButton.setBounds(60, 200, 100, 20);
 
+        submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
         this.add(mainQuestion);
         this.add(subQuestion);
+        this.add(submitButton);
     }
 
 
