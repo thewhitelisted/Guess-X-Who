@@ -43,34 +43,12 @@ public class GamePanel extends JPanel{
 
     public GamePanel(){
         r1c1input = this.getClass().getResourceAsStream("img/poon.png");
-        r1c2input = this.getClass().getResourceAsStream("img/poon.png");
-        r1c3input = this.getClass().getResourceAsStream("img/poon.png");
-        r1c4input = this.getClass().getResourceAsStream("img/poon.png");
-        r1c5input = this.getClass().getResourceAsStream("img/poon.png");
         try{
             r1c1 = ImageIO.read(r1c1input);
-            r1c2 = ImageIO.read(r1c2input);
-            r1c3 = ImageIO.read(r1c3input);
-            r1c4 = ImageIO.read(r1c4input);
-            r1c5 = ImageIO.read(r1c5input);
         }catch(IOException e){
             // if poonpicture does not load, load from folder
             try {
                 r1c1 = ImageIO.read(new File("img/poon.png"));
-                r1c2 = ImageIO.read(new File("img/poon.png"));
-                r1c3 = ImageIO.read(new File("img/poon.png"));
-                r1c4 = ImageIO.read(new File("img/poon.png"));
-                r1c5 = ImageIO.read(new File("img/poon.png"));
-            } catch (IOException e1) {
-            } 
-        } catch (IllegalArgumentException e2){
-            // if poonpicture does not load, load from folder
-            try {
-                r1c1 = ImageIO.read(new File("img/poon.png"));
-                r1c2 = ImageIO.read(new File("img/poon.png"));
-                r1c3 = ImageIO.read(new File("img/poon.png"));
-                r1c4 = ImageIO.read(new File("img/poon.png"));
-                r1c5 = ImageIO.read(new File("img/poon.png"));
             } catch (IOException e1) {
             } 
         }
