@@ -16,7 +16,7 @@ public class GamePanel extends JPanel{
             intYPos = 20;
             for(int y = 0; y < 5; y++){
                 //g.fillRect(intXPos, intYPos, 120, 120);
-                if (characters[x * 5 + y] == null){
+                if (characters[y * 5 + x] == null){
                     break;
                 }
                 g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
