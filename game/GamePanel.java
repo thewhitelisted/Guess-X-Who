@@ -1,6 +1,10 @@
 package game;
 
 import java.awt.Graphics;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel{
@@ -8,7 +12,7 @@ public class GamePanel extends JPanel{
     // Each image can be 120 x 120, with 20 size gap between and at the edges
     int intXPos = 20;
     int intYPos = 20;
-
+    BufferedImage backside;
     Character[] characters = new Character[25];
     
     public void paintComponent(Graphics g){
@@ -18,6 +22,11 @@ public class GamePanel extends JPanel{
                 //g.fillRect(intXPos, intYPos, 120, 120);
                 if (characters[y * 5 + x] == null){
                     break;
+                }
+                if (characters[y * 5 + x].isFlipped){
+                    g.drawImage(backside, intXPos, intYPos, null);
+                    intYPos += 140;
+                    continue;
                 }
                 g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
                 //System.out.println(intXPos);
@@ -30,6 +39,13 @@ public class GamePanel extends JPanel{
     }
 
     public GamePanel(){
+        try {
+            backside = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
+        } catch (IllegalArgumentException | IOException e) {
+            try {
+                backside = ImageIO.read(new File("game/img/backofcard.jpg"));
+            } catch (IOException e1) {}
+        }
         characters = Character.importCharacters();
     }
 }

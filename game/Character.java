@@ -111,10 +111,9 @@ public class Character {
                 BufferedImage icon = null;
                 try {
                     icon = ImageIO.read(Character.class.getClassLoader().getResourceAsStream(character[1]));
-                } catch (IllegalArgumentException | IOException e) {}
-                try {
+                } catch (IllegalArgumentException | IOException e) {
                     icon = ImageIO.read(new File(character[1]));
-                } catch (IOException e) {}
+                }
                 Character.HairColour hair_colour = Character.HairColour.valueOf(character[2]);
                 Character.EyeColour eye_colour = Character.EyeColour.valueOf(character[3]);
                 Character.HatType hat_type = Character.HatType.valueOf(character[4]);
