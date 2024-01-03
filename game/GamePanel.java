@@ -1,12 +1,6 @@
 package game;
 
 import java.awt.Graphics;
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.io.InputStream;
-
-import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GamePanel extends JPanel{
@@ -15,23 +9,17 @@ public class GamePanel extends JPanel{
     int intXPos = 20;
     int intYPos = 20;
 
-    InputStream r1c1input = null;
-    InputStream r1c2input = null;
-    InputStream r1c3input = null;
-    InputStream r1c4input = null;
-    InputStream r1c5input = null;
-    BufferedImage r1c1 = null;
-    BufferedImage r1c2 = null;
-    BufferedImage r1c3 = null;
-    BufferedImage r1c4 = null;
-    BufferedImage r1c5 = null;
+    Character[] characters = new Character[25];
     
     public void paintComponent(Graphics g){
         for (int x = 0; x < 5; x++){
             intYPos = 20;
             for(int y = 0; y < 5; y++){
                 //g.fillRect(intXPos, intYPos, 120, 120);
-                g.drawImage(r1c1, intXPos, intYPos, null);
+                if (characters[x * 5 + y] == null){
+                    break;
+                }
+                g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
                 //System.out.println(intXPos);
                 intYPos += 140;
             }
@@ -42,15 +30,6 @@ public class GamePanel extends JPanel{
     }
 
     public GamePanel(){
-        r1c1input = this.getClass().getClassLoader().getResourceAsStream("game/img/poon.png");
-        try{
-            r1c1 = ImageIO.read(r1c1input);
-        }catch(IllegalArgumentException | IOException e){
-            // if poonpicture does not load, load from folder
-            try {
-                r1c1 = ImageIO.read(new File("game/img/poon.png"));
-            } catch (IOException e1) {
-            } 
-        }
+        characters = Character.importCharacters();
     }
 }

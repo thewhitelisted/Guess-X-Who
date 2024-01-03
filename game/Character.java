@@ -110,6 +110,9 @@ public class Character {
                 String name = character[0];
                 BufferedImage icon = null;
                 try {
+                    icon = ImageIO.read(Character.class.getClassLoader().getResourceAsStream(character[1]));
+                } catch (IllegalArgumentException | IOException e) {}
+                try {
                     icon = ImageIO.read(new File(character[1]));
                 } catch (IOException e) {}
                 Character.HairColour hair_colour = Character.HairColour.valueOf(character[2]);

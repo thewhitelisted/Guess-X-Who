@@ -42,7 +42,6 @@ public class Main implements ActionListener, WindowListener {
     private JButton create_button = new JButton("Create");
 
     // game panel will contain the game board, and the character cards
-    // TODO: add game board and character cards
     public GamePanel game_panel = new GamePanel();
 
     // chat panel will contain the chat box, and the chat input
