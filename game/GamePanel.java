@@ -1,6 +1,5 @@
 package game;
 
-import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -28,7 +27,6 @@ public class GamePanel extends JPanel{
     BufferedImage r1c5 = null;
     
     public void paintComponent(Graphics g){
-        g.setColor(Color.black);
         for (int x = 0; x < 5; x++){
             intYPos = 20;
             for(int y = 0; y < 5; y++){
@@ -39,16 +37,18 @@ public class GamePanel extends JPanel{
             }
             intXPos += 140;
         }
+        intXPos = 20;
+        intYPos = 20;
     }
 
     public GamePanel(){
-        r1c1input = this.getClass().getResourceAsStream("img/poon.png");
+        r1c1input = this.getClass().getClassLoader().getResourceAsStream("game/img/poon.png");
         try{
             r1c1 = ImageIO.read(r1c1input);
-        }catch(IOException e){
+        }catch(IllegalArgumentException | IOException e){
             // if poonpicture does not load, load from folder
             try {
-                r1c1 = ImageIO.read(new File("img/poon.png"));
+                r1c1 = ImageIO.read(new File("game/img/poon.png"));
             } catch (IOException e1) {
             } 
         }
