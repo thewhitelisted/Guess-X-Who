@@ -1,7 +1,5 @@
 package game;
 
-// TODO: find way to restrict users to 2 players
-
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
