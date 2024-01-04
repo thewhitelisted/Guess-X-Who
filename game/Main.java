@@ -1,5 +1,6 @@
 package game;
 
+// TODO: find way to restrict users to 2 players
 
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
@@ -67,16 +68,17 @@ public class Main implements ActionListener, WindowListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == chat_input) {
             // send chat message
-            if (chat_input.getText().length() > 0) {
+            if (chat_input.getText().length() == 0) {
                 return;
             }
             if (ssl == null) {
                 chat_box.append("[SYS] You are not connected to a game.\n");
                 chat_input.setText("");
+                return;
             }
             ssl.ssm.sendText(SuperSocketListener.CHAT + "," + ssl.ssm.getMyAddress() + ": " + chat_input.getText());
             chat_box.append("You: " + chat_input.getText() + "\n");
-            chat_input.setText(""); 
+            chat_input.setText("");
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
             create_frame.setVisible(true);
@@ -85,19 +87,21 @@ public class Main implements ActionListener, WindowListener {
             connect_frame.setVisible(true);
         } else if (e.getSource() == exit_game) {
             ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
-            chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() +  " has left." + "\n");
+            chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() + " has left." + "\n");
             ssl.ssm.disconnect();
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
             ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
-            chat_box.append("[SYS] Connected to ip address: " + connect_ip.getText() + " and port number: " + connect_port.getText() + "\n");
+            chat_box.append("[SYS] Connected to ip address: " + connect_ip.getText() + " and port number: "
+                    + connect_port.getText() + "\n");
             chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() + " has joined.\n");
             connect_frame.setVisible(false);
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
-            chat_box.append("[SYS] Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: " + create_port.getText() + "\n");
+            chat_box.append("[SYS] Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: "
+                    + create_port.getText() + "\n");
             create_frame.setVisible(false);
         }
     }
@@ -161,7 +165,7 @@ public class Main implements ActionListener, WindowListener {
         connect_button.setBounds(0, 200, 300, 50);
         connect_panel.add(connect_button);
 
-        create_panel.setPreferredSize(new Dimension(300,300));
+        create_panel.setPreferredSize(new Dimension(300, 300));
         create_frame.setContentPane(create_panel);
         create_frame.pack();
         create_frame.setResizable(false);
@@ -189,7 +193,7 @@ public class Main implements ActionListener, WindowListener {
 
         main_panel.setBounds(0, 0, 1280, 720);
         main_panel.setLayout(null);
-        
+
         main_panel.add(game_panel);
         main_panel.add(chat_panel);
         main_panel.add(question_panel);
@@ -204,7 +208,7 @@ public class Main implements ActionListener, WindowListener {
 
         question_panel.setBounds(720, 0, 560, 360);
         question_panel.setPreferredSize(new Dimension(560, 360));
-        
+
         chat_scroll.setBounds(0, 0, 560, 325);
         chat_box.setEditable(false);
 
@@ -212,10 +216,9 @@ public class Main implements ActionListener, WindowListener {
         chat_input.setBounds(0, 325, 560, 35);
         chat_input.addActionListener(this);
         chat_panel.add(chat_input);
-        DefaultCaret caret = (DefaultCaret)chat_box.getCaret();
+        DefaultCaret caret = (DefaultCaret) chat_box.getCaret();
         caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
-        
-        
+
         main_frame.pack();
         main_frame.setResizable(false);
         main_frame.setVisible(true);

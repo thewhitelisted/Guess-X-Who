@@ -4,10 +4,11 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import game.Main;
 
-public class SuperSocketListener implements ActionListener{
-    public static final int CONNECT=0, DISCONNECT=1, PICK=2, QUESTION=3, ANSWER=4, CHAT=5;
+public class SuperSocketListener implements ActionListener {
+    public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6;
     public boolean blnServer;
     public SuperSocketMaster ssm;
+    public int counter = 1;
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -15,14 +16,30 @@ public class SuperSocketListener implements ActionListener{
             String strMessage = ssm.readText();
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
-                    Main.chat_box.append("[SYS] User: " + strMessage.substring(2) +  " has joined." + "\n");
+                    counter++;
+                    if (counter == 2) {
+                        Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
+                        Main.chat_box.append("[SYS] Game started." + "\n");
+                    } else if (counter > 2) {
+                        ssm.sendText(ERROR + strMessage.substring(2));
+                        return;
+                    } else {
+                        Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
+                    }
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT) {
-                    Main.chat_box.append("[SYS] User: " + strMessage.substring(2) +  " has left." + "\n");
+                    Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == ERROR) {
+                    // Handle ERROR message
+                    if (strMessage.substring(1, 4).equals("401")) {
+                        Main.chat_box
+                                .append("[SYS] You cannot join a game that has the maximum amount of players" + "\n");
+                    }
                 }
             }
         }
+
     }
 
     public SuperSocketListener(String strIP, int intPort) {
@@ -36,5 +53,5 @@ public class SuperSocketListener implements ActionListener{
         ssm = new SuperSocketMaster(intPort, this);
         ssm.connect();
     }
-    
+
 }
