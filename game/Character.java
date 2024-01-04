@@ -10,8 +10,8 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 
 public class Character {
-    // file format: name, file, skin colour, hair colour, eye colour, 
-    // hair length, expression, hat type, glasses type, face type, 
+    // file format: name, file, skin colour, hair colour, eye colour,
+    // hair length, expression, hat type, glasses type, face type,
     // gender facial hair
 
     public enum EyeColour {
@@ -20,7 +20,7 @@ public class Character {
         BLUE,
         GREEN,
     }
-    
+
     public enum HairColour {
         BALD,
         BLACK,
@@ -97,7 +97,8 @@ public class Character {
         BufferedReader br = null;
         try {
             br = new BufferedReader(new FileReader("game/characters.csv"));
-        } catch (FileNotFoundException e) {}
+        } catch (FileNotFoundException e) {
+        }
 
         Character[] characters = new Character[25];
         String line = "";
@@ -107,6 +108,7 @@ public class Character {
         try {
             while ((line = br.readLine()) != null) {
                 character = line.split(",");
+                System.out.println(line);
                 String name = character[0];
                 BufferedImage icon = null;
                 try {
@@ -124,15 +126,19 @@ public class Character {
                 Character.Expression expression = Character.Expression.valueOf(character[9]);
                 Character.FaceType faceType = Character.FaceType.valueOf(character[10]);
                 Character.Gender gender = Character.Gender.valueOf(character[11]);
-                characters[idx] = new Character(name, icon, hair_colour, eye_colour, hat_type, glasses_type, facial_hair, skin_colour, hair_length, expression, faceType, gender);
+                characters[idx] = new Character(name, icon, hair_colour, eye_colour, hat_type, glasses_type,
+                        facial_hair, skin_colour, hair_length, expression, faceType, gender);
                 idx++;
             }
-        } catch (IOException e) {}
+        } catch (IOException e) {
+        }
         return characters;
     }
 
     // Character constructor
-    public Character(String name, BufferedImage imgIcon, HairColour hairColour, EyeColour eyeColour, HatType hatType, GlassesType glassesType, FacialHair facialHair, SkinColour skinColour, HairLength hairLength, Expression expression, FaceType faceType, Gender gender) {
+    public Character(String name, BufferedImage imgIcon, HairColour hairColour, EyeColour eyeColour, HatType hatType,
+            GlassesType glassesType, FacialHair facialHair, SkinColour skinColour, HairLength hairLength,
+            Expression expression, FaceType faceType, Gender gender) {
         this.strName = name;
         this.imgIcon = imgIcon;
         this.hairColour = hairColour;
