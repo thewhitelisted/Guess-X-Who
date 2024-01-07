@@ -78,6 +78,13 @@ public class Character {
     }
 
     // Character defining attributes
+    public int RotationAngle = 0;
+    public int getRotationAngle(){
+        return RotationAngle;
+    }
+    public void setRotationAngle(int RotationAngle){
+        this.RotationAngle = RotationAngle;
+    }
     public String strName;
     public BufferedImage imgIcon;
     public HairColour hairColour;
@@ -92,6 +99,12 @@ public class Character {
     public FaceType faceType;
     public Gender gender;
     public boolean isFlipped = false;
+    public boolean isFlipped(){
+        return isFlipped;
+    }
+    public void setFlipped(boolean flipped){
+        isFlipped = flipped;
+    }
 
     public static Character[] importCharacters() {
         BufferedReader br = null;

@@ -12,8 +12,15 @@ public class GamePanel extends JPanel {
     // Each image can be 120 x 120, with 20 size gap between and at the edges
     int intXPos = 20;
     int intYPos = 20;
+    int intMouseX = 300;
+    int intMouseY = 300;
     BufferedImage backside;
+    
     Character[] characters = new Character[25];
+
+    public Character[] getCharacters(){
+        return characters;
+    }
 
     public void paintComponent(Graphics g) {
         for (int x = 0; x < 5; x++) {
