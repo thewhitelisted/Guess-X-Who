@@ -17,6 +17,9 @@ public class SuperSocketListener implements ActionListener {
             String strMessage = ssm.readText();
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
+                    if (!this.blnServer) {
+                        ssm.sendText(Integer.toString(PLAYERSREQ));
+                    }
                     counter++;
                     if (counter == 2) {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
@@ -33,7 +36,7 @@ public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == ERROR) {
                     // Handle ERROR message
-                    if (strMessage.substring(1, 4).equals("401")) {
+                    if (strMessage.substring(1, 4).equals("401") && ssm.getMyAddress().equals(strMessage.substring(4))) {
                         Main.chat_box
                                 .append("[SYS] You cannot join a game that has the maximum amount of players" + "\n");
                         ssm.disconnect();
