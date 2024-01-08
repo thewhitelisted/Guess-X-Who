@@ -22,7 +22,7 @@ public class SuperSocketListener implements ActionListener {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
                         Main.chat_box.append("[SYS] Game started." + "\n");
                     } else if (counter > 2) {
-                        ssm.sendText(ERROR + strMessage.substring(2));
+                        ssm.sendText(ERROR + "401" + strMessage.substring(2));
                         return;
                     } else {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
