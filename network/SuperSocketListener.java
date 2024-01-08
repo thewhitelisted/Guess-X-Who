@@ -17,9 +17,6 @@ public class SuperSocketListener implements ActionListener {
             String strMessage = ssm.readText();
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
-                    if (!this.blnServer) {
-                        ssm.sendText(PLAYERSREQ + "");
-                    }
                     counter++;
                     if (counter == 2) {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");

@@ -96,6 +96,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         } else if (e.getSource() == connect_button) {
             // connect to server
             ssl = new SuperSocketListener(connect_ip.getText(), Integer.parseInt(connect_port.getText()));
+            ssl.ssm.sendText(SuperSocketListener.PLAYERSREQ + "," + ssl.ssm.getMyAddress());
             ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
             chat_box.append("[SYS] Connected to ip address: " + connect_ip.getText() + " and port number: "
                     + connect_port.getText() + "\n");
