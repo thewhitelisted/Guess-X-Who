@@ -48,7 +48,6 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
     // game panel will contain the game board, and the character cards
     public GamePanel game_panel = new GamePanel();
-    Character[] characters = game_panel.getCharacters();
 
     // chat panel will contain the chat box, and the chat input
     public static JTextArea chat_box = new JTextArea();
@@ -189,28 +188,28 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         int column = (MouseX-20)/140;
         int row = (MouseY-20)/140;
         int index = row * 5 + column;
-        if (index >= 0 && index < characters.length && characters[index] != null) {
+        if (index >= 0 && index < game_panel.characters.length && game_panel.characters[index] != null) {
             // Flip the card with animation
-            characters[index].setFlipped(!characters[index].isFlipped());
+            game_panel.characters[index].setFlipped(!game_panel.characters[index].isFlipped());
             game_panel.repaint();
         }   
     }
     private int angle = 0;
-    private void cardAnimation(ActionEvent e, int index,int row, int column){
-        if(e.getSource () == theTimer){
-            if(index==-1){
-                angle +=10;
-            } 
-            if(angle >=180){
-                characters[index].setFlipped(!characters[index].isFlipped());
-                game_panel.repaint();
-                index=-1;
-            } else {
-                characters[index].setRotationAngle(angle);
-                game_panel.repaint();
-            }
-        }
-    }
+    // private void cardAnimation(ActionEvent e, int index,int row, int column){
+    //     if(e.getSource () == theTimer){
+    //         if(index==-1){
+    //             angle +=10;
+    //         } 
+    //         if(angle >=180){
+    //             characters[index].setFlipped(!characters[index].isFlipped());
+    //             game_panel.repaint();
+    //             index=-1;
+    //         } else {
+    //             characters[index].setRotationAngle(angle);
+    //             game_panel.repaint();
+    //         }
+    //     }
+    // }
     public Main() {
         main_panel.setPreferredSize(new Dimension(1280, 720));
         main_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);

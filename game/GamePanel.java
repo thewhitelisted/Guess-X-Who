@@ -1,5 +1,6 @@
 package game;
 
+import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.image.BufferedImage;
 import java.io.File;
@@ -23,6 +24,8 @@ public class GamePanel extends JPanel {
     }
 
     public void paintComponent(Graphics g) {
+        g.setColor(Color.WHITE);
+        g.fillRect(0, 0, 720, 720);
         for (int x = 0; x < 5; x++) {
             intYPos = 20;
             for (int y = 0; y < 5; y++) {
