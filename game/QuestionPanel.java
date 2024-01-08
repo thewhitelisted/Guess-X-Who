@@ -7,6 +7,10 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
+import network.SuperSocketMaster;
 
 public class QuestionPanel extends JPanel implements ActionListener{
     String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair"};
@@ -24,18 +28,27 @@ public class QuestionPanel extends JPanel implements ActionListener{
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
+    static JTextArea questionLog = new JTextArea();
+    JScrollPane questionScroll = new JScrollPane(questionLog);
+
     JButton submitButton = new JButton("Submit");
+
+    SuperSocketMaster ssm = null;
 
     QuestionPanel(){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(560, 360));
 
+        questionScroll.setBounds(0, 160, 560, 200);
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
-        submitButton.setBounds(60, 200, 100, 20);
+        submitButton.setBounds(250, 10, 100, 20);
+
+        questionLog.setEditable(false);
 
         submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
+        this.add(questionScroll);
         this.add(mainQuestion);
         this.add(subQuestion);
         this.add(submitButton);
@@ -98,6 +111,11 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     }
                     break;
             }
+        }else if (e.getSource() == submitButton){
+            questionLog.append(mainQuestion.getSelectedItem() + ": " + subQuestion.getSelectedItem() + "\n");
+            ssm.sendText(mainQuestion.getSelectedItem() + ": " + subQuestion.getSelectedItem());
+        }else if (e.getSource() == ssm){
+            questionLog.append(ssm.readText() + "\n");
         }
     }
 }
