@@ -8,7 +8,6 @@ import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
-import java.util.Timer;
 
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
@@ -21,6 +20,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import javax.swing.Timer;
 import javax.swing.text.DefaultCaret;
 
 
@@ -29,7 +29,7 @@ import network.SuperSocketListener;
 public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener {
     private JFrame main_frame = new JFrame("Guess X Who");
     private JPanel main_panel = new JPanel();
-    Timer theTimer = new Timer();
+    Timer theTimer = new Timer(1000/48, this);
     // connect and create frames
     private JFrame connect_frame = new JFrame("Connect to a game");
     private JPanel connect_panel = new JPanel();
