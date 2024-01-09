@@ -6,7 +6,7 @@ import game.Main;
 
 public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
-            PLAYERSREQ = 7, PLAYERS = 8;
+            PLAYERSREQ = 7, PLAYERS = 8, START = 9;
     public boolean blnServer;
     public SuperSocketMaster ssm;
     public int counter = 1;
@@ -24,6 +24,7 @@ public class SuperSocketListener implements ActionListener {
                     if (counter == 2) {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
                         Main.chat_box.append("[SYS] Game started." + "\n");
+                        ssm.sendText(START + "");
                     } else if (counter > 2) {
                         ssm.sendText(ERROR + "401" + strMessage.substring(2));
                         return;
@@ -49,6 +50,8 @@ public class SuperSocketListener implements ActionListener {
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == PLAYERS) {
                     counter = Integer.parseInt(strMessage.substring(2));
                     System.out.println(counter);
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == START) {
+                    Main.chat_box.append("[SYS] Game started." + "\n");
                 }
             }
         }
