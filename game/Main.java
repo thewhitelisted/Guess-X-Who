@@ -47,7 +47,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JButton create_button = new JButton("Create");
 
     // game panel will contain the game board, and the character cards
-    public GamePanel game_panel = new GamePanel();
+    public static GamePanel game_panel = new GamePanel();
 
     // chat panel will contain the chat box, and the chat input
     public static JTextArea chat_box = new JTextArea();
@@ -164,7 +164,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
     @Override
 	public void mouseClicked(MouseEvent e){
-       cardClick(e); 
+       Game.cardClick(e); 
      
 	}
 
@@ -182,19 +182,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 	public void mouseDragged(MouseEvent e){
 	
     }
-    private void cardClick(MouseEvent e){
-        System.out.println("Card clicked");
-        int MouseX = e.getX();
-        int MouseY = e.getY();
-        int column = (MouseX-20)/140;
-        int row = (MouseY-20)/140;
-        int index = row * 5 + column;
-        if (index >= 0 && index < game_panel.characters.length && game_panel.characters[index] != null) {
-            // Flip the card with animation
-            game_panel.characters[index].setFlipped(!game_panel.characters[index].isFlipped());
-            game_panel.repaint();
-        }   
-    }
+    
     private int angle = 0;
     // private void cardAnimation(ActionEvent e, int index,int row, int column){
     //     if(e.getSource () == theTimer){
