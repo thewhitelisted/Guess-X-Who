@@ -10,7 +10,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 
-import network.SuperSocketMaster;
+import network.SuperSocketListener;
 
 public class QuestionPanel extends JPanel implements ActionListener{
     String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair"};
@@ -28,12 +28,10 @@ public class QuestionPanel extends JPanel implements ActionListener{
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
-    static JTextArea questionLog = new JTextArea();
+    public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
 
     JButton submitButton = new JButton("Submit");
-
-    SuperSocketMaster ssm = null;
 
     QuestionPanel(){
         this.setLayout(null);
@@ -112,10 +110,8 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
             }
         }else if (e.getSource() == submitButton){
-            questionLog.append(mainQuestion.getSelectedItem() + ": " + subQuestion.getSelectedItem() + "\n");
-            ssm.sendText(mainQuestion.getSelectedItem() + ": " + subQuestion.getSelectedItem());
-        }else if (e.getSource() == ssm){
-            questionLog.append(ssm.readText() + "\n");
+            questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
+            Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
         }
     }
 }

@@ -3,6 +3,7 @@ package network;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import game.Main;
+import game.QuestionPanel;
 
 public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
@@ -33,6 +34,10 @@ public class SuperSocketListener implements ActionListener {
                     }
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT) {
                     Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
+                    String args[] = strMessage.split(",");
+                    // TODO: HANDLE TURNS
+                    QuestionPanel.questionLog.append("[SYS] User: " + args[1] + " asked about " + args[2] + " being " + args[3] + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == ERROR) {

@@ -66,7 +66,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JMenuItem exit_game = new JMenuItem("Exit Game");
 
     // SuperSocketListener
-    private SuperSocketListener ssl;
+    public static SuperSocketListener ssl;
 
     // action listener
     public void actionPerformed(ActionEvent e) {
