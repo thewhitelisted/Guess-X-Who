@@ -28,7 +28,7 @@ public class GamePanel extends JPanel {
     BufferedImage redcard = null;
     */
     BufferedImage backside = null;
-    /* 
+    BufferedImage redcard = null;
     BufferedImage backside1 = null;
     BufferedImage backside2 = null;
     BufferedImage backside3 = null;
@@ -46,7 +46,6 @@ public class GamePanel extends JPanel {
         backside6, backside7, backside8, backside9, backside10,
         backside11, backside12
     };
-*/
 
     Character[] characters = new Character[25];
 
@@ -56,7 +55,7 @@ public class GamePanel extends JPanel {
     public void cardFlip(BufferedImage[] cardBackFrames, ActionEvent e){  
         
     }
-    public void paintComponent(Graphics g, int index) {
+    public void paintComponent(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
         for (int x = 0; x < 5; x++) {
@@ -96,7 +95,6 @@ public class GamePanel extends JPanel {
     public GamePanel() {
         try {
             backside = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
-            /* 
             backside1 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard1.jpg"));
             backside2 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard2.jpg"));
             backside3 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard3.jpg"));
@@ -110,11 +108,9 @@ public class GamePanel extends JPanel {
             backside11 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard11.jpg"));
             backside12 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard12.jpg"));
             redcard = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/redcard.jpg"));
-            */
         } catch (IllegalArgumentException | IOException e) {
             try {
                 backside = ImageIO.read(new File("game/img/backofcard.jpg"));
-                /* 
                 backside1 = ImageIO.read(new File("game/img/backofcard1.jpg"));
                 backside2 = ImageIO.read(new File("game/img/backofcard2.jpg"));
                 backside3 = ImageIO.read(new File("game/img/backofcard3.jpg"));
@@ -128,7 +124,7 @@ public class GamePanel extends JPanel {
                 backside11 = ImageIO.read(new File("game/img/backofcard11.jpg"));
                 backside12 = ImageIO.read(new File("game/img/backofcard12.jpg"));
                 redcard = ImageIO.read(new File("game/img/redcard.jpg"));
-                */
+
             } catch (IOException e1) {
             }
         }
