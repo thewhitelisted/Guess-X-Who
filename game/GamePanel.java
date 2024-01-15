@@ -71,6 +71,8 @@ public class GamePanel extends JPanel {
                     continue;
                 }
                 g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
+                g.setColor(Color.WHITE);
+                g.drawString(characters[y * 5 + x].strName, intXPos + 5, intYPos + 10);
                 // System.out.println(intXPos);
                 intYPos += 140;
             }

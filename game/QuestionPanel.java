@@ -21,7 +21,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strExpressionQuestions = {"Happy", "Angry", "Sad", "Neutral"};
     String[] strHatQuestions = {"None", "Cap", "Tophat"};
     String[] strGlassesQuestions = {"None", "Glasses", "Sunglasses"};
-    String[] strFaceQuestions = {"Round", "Square", "Oval"};
+    String[] strFaceQuestions = {"Round", "Square", "Triangle"};
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
 
