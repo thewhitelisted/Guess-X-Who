@@ -13,7 +13,7 @@ import javax.swing.JTextArea;
 import network.SuperSocketListener;
 
 public class QuestionPanel extends JPanel implements ActionListener{
-    String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair"};
+    String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair", "Character"};
     String[] strEyeQuestions = {"Brown", "Blue", "Green", "Black"};
     String[] strHairQuestions = {"Black", "Brown", "Blonde"};
     String[] strSkinQuestions = {"White", "Black", "Brown"};
@@ -24,6 +24,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strFaceQuestions = {"Round", "Square", "Triangle"};
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
+    String[] strCharacterQuestions = {"Adeline", "Aidan", "Alex", "Andrea", "Ariana", "Brandon", "Caitlyn", "Chloe", "Donald", "Fizan", "Jennifer", "Jensen", "Jeremy", "Johnny", "Jong", "Kimmy", "Milly", "Nathan", "Peter", "Poon", "Samira", "Seamus", "Taylor", "Thomphson", "Xinyan"};
 
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
@@ -105,6 +106,11 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Facial Hair":
                     for (String str : strFacialQuestions){
+                        subQuestion.addItem(str);
+                    }
+                    break;
+                case "Character":
+                    for (String str : strCharacterQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
