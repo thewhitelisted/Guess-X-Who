@@ -14,7 +14,7 @@ import network.SuperSocketListener;
 
 public class QuestionPanel extends JPanel implements ActionListener{
     String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair"};
-    String[] strEyeQuestions = {"Brown", "Blue", "Green"};
+    String[] strEyeQuestions = {"Brown", "Blue", "Green", "Black"};
     String[] strHairQuestions = {"Black", "Brown", "Blonde"};
     String[] strSkinQuestions = {"White", "Black", "Brown"};
     String[] strLengthQuestions = {"Long", "Short", "Bald"};
