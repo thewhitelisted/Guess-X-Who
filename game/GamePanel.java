@@ -19,7 +19,7 @@ public class GamePanel extends JPanel {
     int intMouseY = 300;
     int cardindex = 0;
     //Timer timer = new Timer(1000/48, this);
-    /* 
+     /*
     BufferedImage redcard = null;
     */
     BufferedImage backside = null;
@@ -56,12 +56,14 @@ public class GamePanel extends JPanel {
         for (int x = 0; x < 5; x++) {
             intYPos = 20;
             for (int y = 0; y < 5; y++) {
-                // g.fillRect(intXPos, intYPos, 120, 120);
+                g.fillRect(intXPos, intYPos, 120, 120);
                 if (characters[y * 5 + x] == null) {
                     break;
                 }
                 if (characters[y * 5 + x].isFlipped) {
-                    g.drawImage(backside, intXPos, intYPos, null);
+                    //for(int i = 0; i < cardBackFrames.length; i++){
+                        g.drawImage(cardBackFrames[3], intXPos, intYPos, null);
+                    //}
                     intYPos += 140;
                     continue;
                 }
@@ -76,7 +78,7 @@ public class GamePanel extends JPanel {
         intXPos = 20;
         intYPos = 20;
     }
-    /* 
+    /*
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == timer){
@@ -84,14 +86,16 @@ public class GamePanel extends JPanel {
             if(cardindex >=cardBackFrames.length){
                 cardindex = 0;
                 timer.stop();
-            }
+}
             repaint();
+            timer.stop();
         }
     }
     */
     public GamePanel() {
         try {
             backside = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
+             
             backside1 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard1.jpg"));
             backside2 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard2.jpg"));
             backside3 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard3.jpg"));
@@ -123,7 +127,7 @@ public class GamePanel extends JPanel {
                 redcard = ImageIO.read(new File("game/img/redcard.jpg"));
 
             } catch (IOException e1) {
-            }
+                            }
         }
         characters = Character.importCharacters();
     }
