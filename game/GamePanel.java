@@ -36,12 +36,7 @@ public class GamePanel extends JPanel {
     BufferedImage backside10 = null;
     BufferedImage backside11 = null;
     BufferedImage backside12 = null;
-    BufferedImage[] cardBackFrames = new BufferedImage[] {
-        redcard, backside1, backside2, backside3, backside4, backside5,
-        backside6, backside7, backside8, backside9, backside10,
-        backside11, backside12
-    };
-
+    BufferedImage cardBackFrames[] = new BufferedImage[13];
     Character[] characters = new Character[25];
 
     public Character[] getCharacters(){
@@ -94,21 +89,20 @@ public class GamePanel extends JPanel {
     */
     public GamePanel() {
         try {
-            backside = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
-             
-            backside1 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard1.jpg"));
-            backside2 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard2.jpg"));
-            backside3 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard3.jpg"));
-            backside4 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard4.jpg"));
-            backside5 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard5.jpg"));
-            backside6 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard6.jpg"));
-            backside7 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard7.jpg"));
-            backside8 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard8.jpg"));
-            backside9 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard9.jpg"));
-            backside10 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard10.jpg"));
-            backside11 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard11.jpg"));
-            backside12 = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/backofcard12.jpg"));
-            redcard = ImageIO.read(Character.class.getClassLoader().getResourceAsStream("game/img/redcard.jpg"));
+            backside = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
+            backside1 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard1.jpg"));
+            backside2 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard2.jpg"));
+            backside3 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard3.jpg"));
+            backside4 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard4.jpg"));
+            backside5 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard5.jpg"));
+            backside6 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard6.jpg"));
+            backside7 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard7.jpg"));
+            backside8 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard8.jpg"));
+            backside9 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard9.jpg"));
+            backside10 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard10.jpg"));
+            backside11 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard11.jpg"));
+            backside12 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard12.jpg"));
+            redcard = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/redcard.jpg"));
         } catch (IllegalArgumentException | IOException e) {
             try {
                 backside = ImageIO.read(new File("game/img/backofcard.jpg"));
@@ -125,10 +119,14 @@ public class GamePanel extends JPanel {
                 backside11 = ImageIO.read(new File("game/img/backofcard11.jpg"));
                 backside12 = ImageIO.read(new File("game/img/backofcard12.jpg"));
                 redcard = ImageIO.read(new File("game/img/redcard.jpg"));
-
             } catch (IOException e1) {
-                            }
+            }
         }
+        cardBackFrames = new BufferedImage[] {
+            redcard, backside1, backside2, backside3, backside4, backside5,
+            backside6, backside7, backside8, backside9, backside10,
+            backside11, backside12
+        };
         characters = Character.importCharacters();
     }
 
