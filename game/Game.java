@@ -31,4 +31,8 @@ public class Game {
             Main.game_panel.repaint();
         }   
     }
+
+    public static String[] returnCharacterData(Character character) {
+        return new String[] {character.strName, character.hairColour.toString(), character.eyeColour.toString(), character.hatType.toString(), character.glassesType.toString(), character.facialHair.toString(), character.skinColour.toString(), character.hairLength.toString(), character.expression.toString(), character.faceType.toString(), character.gender.toString()};
+    }
 }
