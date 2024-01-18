@@ -29,27 +29,33 @@ public class QuestionPanel extends JPanel implements ActionListener{
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
+
     JLabel characterLabel = new JLabel();
 
     public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
 
     JButton submitButton = new JButton("Submit");
+    JButton infoButton = new JButton("Get Info");
+
+    boolean blnInfo = false;
 
     QuestionPanel(){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(560, 360));
 
-        questionScroll.setBounds(0, 160, 560, 200);
+        questionScroll.setBounds(0, 140, 560, 220);
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
         submitButton.setBounds(250, 10, 100, 20);
+        infoButton.setBounds(10, 50, 100, 20);
         characterLabel.setBounds(120, 10, 100, 20);
 
         questionLog.setEditable(false);
 
         characterLabel.setVisible(false);
 
+        infoButton.addActionListener(this);
         submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
         this.add(questionScroll);
@@ -57,6 +63,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
         this.add(subQuestion);
         this.add(submitButton);
         this.add(characterLabel);
+        this.add(infoButton);
     }
 
 
@@ -141,8 +148,14 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
             }
         }else if (e.getSource() == submitButton){
+            if (mainQuestion.getSelectedItem() == "Character"){
+                questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
+                Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+            }
             questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
             Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
+        }else if (e.getSource() == infoButton){
+            blnInfo = true;
         }
     }
 }
