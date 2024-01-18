@@ -164,7 +164,19 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
     @Override
 	public void mouseClicked(MouseEvent e){
-       Game.cardClick(e); 
+        if (question_panel.mainQuestion.getSelectedItem() == "Info") {
+            for (int count = 0; count <= 10; count++){
+                question_panel.questionLog.append(Game.infoClick(e)[count]);
+            }
+        }else if(question_panel.mainQuestion.getSelectedItem() == "Character"){
+            question_panel.subQuestion.setVisible(false);
+            question_panel.characterLabel.setVisible(true);
+            question_panel.characterLabel.setText(Game.guessClick(e));
+            System.out.println(Game.guessClick(e));
+            System.out.println(question_panel.characterLabel.getText());
+        }else{
+            Game.cardClick(e); 
+        }
      
 	}
 

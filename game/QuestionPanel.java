@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -24,10 +25,12 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strFaceQuestions = {"Round", "Square", "Triangle"};
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
-    String[] strCharacterQuestions = {"Adeline", "Aidan", "Alex", "Andrea", "Ariana", "Brandon", "Caitlyn", "Chloe", "Donald", "Fizan", "Jennifer", "Jensen", "Jeremy", "Johnny", "Jong", "Kimmy", "Milly", "Nathan", "Peter", "Poon", "Samira", "Seamus", "Taylor", "Thomphson", "Xinyan"};
+    String[] strCharacterQuestions = {"adeline", "aidan", "alex", "andrea", "ariana", "brandon", "caitlyn", "chloe", "donald", "fizan", "jennifer", "jensen", "jeremy", "johnny", "jong", "kimmy", "milly", "nathan", "peter", "poon", "samira", "seamus", "taylor", "thomphson", "xinyan"};
 
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
+
+    JLabel characterLabel = new JLabel();
 
     public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
@@ -42,8 +45,11 @@ public class QuestionPanel extends JPanel implements ActionListener{
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
         submitButton.setBounds(250, 10, 100, 20);
+        characterLabel.setBounds(110, 10, 100, 20);
 
         questionLog.setEditable(false);
+
+        characterLabel.setVisible(false);
 
         submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
