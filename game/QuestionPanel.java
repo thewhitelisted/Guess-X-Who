@@ -25,7 +25,6 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strFaceQuestions = {"Round", "Square", "Triangle"};
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
-    String[] strCharacterQuestions = {"adeline", "aidan", "alex", "andrea", "ariana", "brandon", "caitlyn", "chloe", "donald", "fizan", "jennifer", "jensen", "jeremy", "johnny", "jong", "kimmy", "milly", "nathan", "peter", "poon", "samira", "seamus", "taylor", "thomphson", "xinyan"};
 
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
@@ -45,7 +44,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
         submitButton.setBounds(250, 10, 100, 20);
-        characterLabel.setBounds(110, 10, 100, 20);
+        characterLabel.setBounds(120, 10, 100, 20);
 
         questionLog.setEditable(false);
 
@@ -57,6 +56,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
         this.add(mainQuestion);
         this.add(subQuestion);
         this.add(submitButton);
+        this.add(characterLabel);
     }
 
 
@@ -66,59 +66,78 @@ public class QuestionPanel extends JPanel implements ActionListener{
             subQuestion.removeAllItems();
             switch (mainQuestion.getSelectedItem().toString()) {
                 case "Eye Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strEyeQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strHairQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Skin Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strSkinQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Length":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strLengthQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Expression":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strExpressionQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hat Type":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strHatQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Glasses Type":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strGlassesQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Face Shape":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strFaceQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Gender":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strGenderQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Facial Hair":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strFacialQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Character":
-                    for (String str : strCharacterQuestions){
-                        subQuestion.addItem(str);
-                    }
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     break;
             }
         }else if (e.getSource() == submitButton){
