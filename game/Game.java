@@ -3,6 +3,8 @@ package game;
 import java.awt.event.MouseEvent;
 
 public class Game {
+    public static int turn = 0;
+
     public static boolean checkGuess(Character guess, Character answer) {
         return guess == answer;
     }

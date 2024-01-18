@@ -2,6 +2,8 @@ package network;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+
+import game.Game;
 import game.Main;
 import game.QuestionPanel;
 
@@ -34,6 +36,8 @@ public class SuperSocketListener implements ActionListener {
                     }
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT) {
                     Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
+                } else if (Integer.parseInt(strMessage.substring(0,1)) == PICK) {
+
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
                     String args[] = strMessage.split(",");
                     // TODO: HANDLE TURNS
@@ -57,6 +61,7 @@ public class SuperSocketListener implements ActionListener {
                     System.out.println(counter);
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == START) {
                     Main.chat_box.append("[SYS] Game started." + "\n");
+                    
                 }
             }
         }
