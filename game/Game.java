@@ -9,15 +9,6 @@ public class Game {
         return guess == answer;
     }
 
-    public static boolean flippedWrong(Character[] characters, Character answer) {
-        for (Character character : characters) {
-            if (character.isFlipped && character == answer) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     public static void cardClick(MouseEvent e){
         System.out.println("Card clicked");
         int MouseX = e.getX();
