@@ -6,6 +6,7 @@ import java.awt.event.ActionListener;
 
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
@@ -24,33 +25,45 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strFaceQuestions = {"Round", "Square", "Triangle"};
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
-    String[] strCharacterQuestions = {"Adeline", "Aidan", "Alex", "Andrea", "Ariana", "Brandon", "Caitlyn", "Chloe", "Donald", "Fizan", "Jennifer", "Jensen", "Jeremy", "Johnny", "Jong", "Kimmy", "Milly", "Nathan", "Peter", "Poon", "Samira", "Seamus", "Taylor", "Thomphson", "Xinyan"};
 
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
+
+
+    JLabel characterLabel = new JLabel();
 
     public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
 
     JButton submitButton = new JButton("Submit");
+    JButton infoButton = new JButton("Get Info");
+
+    boolean blnInfo = false;
 
     QuestionPanel(){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(560, 360));
 
-        questionScroll.setBounds(0, 160, 560, 200);
+        questionScroll.setBounds(0, 140, 560, 220);
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
         submitButton.setBounds(250, 10, 100, 20);
+        infoButton.setBounds(10, 50, 100, 20);
+        characterLabel.setBounds(120, 10, 100, 20);
 
         questionLog.setEditable(false);
 
+        characterLabel.setVisible(false);
+
+        infoButton.addActionListener(this);
         submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
         this.add(questionScroll);
         this.add(mainQuestion);
         this.add(subQuestion);
         this.add(submitButton);
+        this.add(characterLabel);
+        this.add(infoButton);
     }
 
 
@@ -60,64 +73,89 @@ public class QuestionPanel extends JPanel implements ActionListener{
             subQuestion.removeAllItems();
             switch (mainQuestion.getSelectedItem().toString()) {
                 case "Eye Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strEyeQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strHairQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Skin Color":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strSkinQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Length":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strLengthQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Expression":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strExpressionQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hat Type":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strHatQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Glasses Type":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strGlassesQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Face Shape":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strFaceQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Gender":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strGenderQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Facial Hair":
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     for (String str : strFacialQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Character":
-                    for (String str : strCharacterQuestions){
-                        subQuestion.addItem(str);
-                    }
+                    characterLabel.setVisible(false);
+                    subQuestion.setVisible(true);
                     break;
             }
         }else if (e.getSource() == submitButton){
+            if (mainQuestion.getSelectedItem() == "Character"){
+                questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
+                Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+            }
             questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
             Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
+        }else if (e.getSource() == infoButton){
+            blnInfo = true;
         }
     }
 }
