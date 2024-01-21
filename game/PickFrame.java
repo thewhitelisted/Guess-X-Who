@@ -1,11 +1,16 @@
 package game;
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 
-public class PickFrame extends JPanel{
+import network.SuperSocketListener;
+
+final public class PickFrame extends JPanel implements ActionListener{
     JPanel panel;
     JLabel title = new JLabel("Pick a character");
     JButton pick = new JButton("Pick");
@@ -13,8 +18,22 @@ public class PickFrame extends JPanel{
     JComboBox<String> characters = new JComboBox<String>(strCharacterQuestions);
 
     public PickFrame(){
+        this.setBounds(0, 0, 1280, 720);
         this.add(title);
-        this.add(pick);
         this.add(characters);
+        this.add(pick);
+        this.pick.addActionListener(this);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == pick) {
+            if (!Main.ssl.blnServer) {
+                Game.player1 = Game.getCharFromName(strCharacterQuestions[characters.getSelectedIndex()]);
+            } else {
+                Game.player2 = Game.getCharFromName(strCharacterQuestions[characters.getSelectedIndex()]);
+            }
+            Main.ssl.ssm.sendText(SuperSocketListener.PICK + "," + strCharacterQuestions[characters.getSelectedIndex()]);
+        }
     }
 }

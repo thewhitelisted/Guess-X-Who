@@ -38,6 +38,19 @@ public class SuperSocketListener implements ActionListener {
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT) {
                     Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0,1)) == PICK) {
+                    String args[] = strMessage.split(",");
+                    if (!this.blnServer) {
+                        // start from arg 1
+                        Game.player2 = Game.getCharFromName(args[1]);
+                        Main.main_frame.setContentPane(Main.main_panel);
+                    }
+                    // now that player one has picked (client), server picks
+                    if (this.blnServer) {
+                        // start from arg 1
+                        Game.player1 = Game.getCharFromName(args[1]);
+                        Main.main_frame.setContentPane(new PickFrame());
+                        Main.main_frame.pack();
+                    }
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
                     String args[] = strMessage.split(",");
                     // TODO: HANDLE TURNS
