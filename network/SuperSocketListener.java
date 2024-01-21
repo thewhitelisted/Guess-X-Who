@@ -19,6 +19,7 @@ public class SuperSocketListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == ssm) {
             String strMessage = ssm.readText();
+            System.out.println(strMessage);
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
                     if (!this.blnServer) {
@@ -81,7 +82,8 @@ public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append("[SYS] Game started." + "\n");
                     Main.main_frame.setContentPane(new PickFrame());
                     Main.main_frame.pack();
-                } else if (Integer.parseInt(strMessage.substring(0, 2)) == TURN) {
+                } else if (Integer.parseInt(strMessage) == TURN) {
+                    System.out.println("turn");
                     Main.question_panel.submitButton.setEnabled(true);
                     QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
                 }
