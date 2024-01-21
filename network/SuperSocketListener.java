@@ -82,7 +82,7 @@ public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append("[SYS] Game started." + "\n");
                     Main.main_frame.setContentPane(new PickFrame());
                     Main.main_frame.pack();
-                } else if (strMessage.substring(1, 2) == ",") {
+                } else if (strMessage.substring(1, 2).equals(",")) {
                     System.out.println("turn");
                     Main.question_panel.submitButton.setEnabled(true);
                     QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
