@@ -10,7 +10,7 @@ import game.QuestionPanel;
 
 public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
-            PLAYERSREQ = 7, PLAYERS = 8, START = 9;
+            PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10;
     public boolean blnServer;
     public SuperSocketMaster ssm;
     public int counter = 1;
@@ -44,6 +44,7 @@ public class SuperSocketListener implements ActionListener {
                         Game.player2 = Game.getCharFromName(args[1]);
                         Main.main_frame.setContentPane(Main.main_panel);
                         Main.main_frame.pack();
+
                     }
                     // now that player one has picked (client), server picks
                     if (this.blnServer) {
@@ -54,8 +55,11 @@ public class SuperSocketListener implements ActionListener {
                     }
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
                     String args[] = strMessage.split(",");
-                    // TODO: HANDLE TURNS
                     QuestionPanel.questionLog.append("[SYS] User: " + args[1] + " asked about " + args[2] + " being " + args[3] + "\n");
+                    // enable to answer label, yes and no buttons
+                    QuestionPanel.answerLabel.setVisible(true);
+                    QuestionPanel.yesButton.setVisible(true);
+                    QuestionPanel.noButton.setVisible(true);
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == CHAT) {
                     Main.chat_box.append(strMessage.substring(2) + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == ERROR) {
@@ -77,6 +81,9 @@ public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append("[SYS] Game started." + "\n");
                     Main.main_frame.setContentPane(new PickFrame());
                     Main.main_frame.pack();
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == TURN) {
+                    Main.question_panel.submitButton.setEnabled(true);
+                    QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
                 }
             }
         }

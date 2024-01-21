@@ -3,7 +3,6 @@ package game;
 import java.awt.event.MouseEvent;
 
 public class Game {
-    public static int turn = 0;
     public static Character player1;
     public static Character player2;
 

@@ -29,13 +29,16 @@ public class QuestionPanel extends JPanel implements ActionListener{
     JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
     JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
+    public static JLabel answerLabel = new JLabel("ANSWER THE QUESTION");
+    public static JButton yesButton = new JButton("Yes");
+    public static JButton noButton = new JButton("No");
 
     JLabel characterLabel = new JLabel();
 
     public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
 
-    JButton submitButton = new JButton("Submit");
+    public JButton submitButton = new JButton("Submit");
     JButton infoButton = new JButton("Get Info");
 
     boolean blnInfo = false;
@@ -48,8 +51,15 @@ public class QuestionPanel extends JPanel implements ActionListener{
         mainQuestion.setBounds(10, 10, 100, 20);
         subQuestion.setBounds(110, 10, 100, 20);
         submitButton.setBounds(250, 10, 100, 20);
-        infoButton.setBounds(10, 50, 100, 20);
+        submitButton.setEnabled(false);
+        infoButton.setBounds(10, 35, 100, 20);
         characterLabel.setBounds(120, 10, 100, 20);
+        answerLabel.setBounds(10, 75, 200, 20);
+        answerLabel.setVisible(false);
+        yesButton.setBounds(10, 100, 100, 20);
+        answerLabel.setVisible(false);
+        noButton.setBounds(120, 100, 100, 20);
+        answerLabel.setVisible(false);
 
         questionLog.setEditable(false);
 
@@ -64,6 +74,9 @@ public class QuestionPanel extends JPanel implements ActionListener{
         this.add(submitButton);
         this.add(characterLabel);
         this.add(infoButton);
+        this.add(answerLabel);
+        this.add(yesButton);
+        this.add(noButton);
     }
 
 
@@ -154,6 +167,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
             }
             questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
             Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
+            submitButton.setEnabled(false);
         }else if (e.getSource() == infoButton){
             blnInfo = true;
         }

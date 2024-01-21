@@ -36,6 +36,7 @@ final public class PickFrame extends JPanel implements ActionListener{
                 Main.main_frame.pack();
             }
             Main.ssl.ssm.sendText(SuperSocketListener.PICK + "," + strCharacterQuestions[characters.getSelectedIndex()]);
+            Main.ssl.ssm.sendText(SuperSocketListener.TURN + "");
         }
     }
 }
