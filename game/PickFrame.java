@@ -18,6 +18,10 @@ public class PickFrame extends JFrame{
         panel.setLayout(null);
         panel.setBounds(0, 0, 800, 600);
 
+        // add components
+        panel.add(title);
+        panel.add(pick);
+        panel.add(characters);
 
         this.add(panel);
         this.setSize(800, 600);

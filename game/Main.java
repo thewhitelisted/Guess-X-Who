@@ -27,7 +27,7 @@ import javax.swing.text.DefaultCaret;
 import network.SuperSocketListener;
 
 public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener {
-    private JFrame main_frame = new JFrame("Guess X Who");
+    public static JFrame main_frame = new JFrame("Guess X Who");
     private JPanel main_panel = new JPanel();
     Timer theTimer = new Timer(1000/48, this);
     // connect and create frames
