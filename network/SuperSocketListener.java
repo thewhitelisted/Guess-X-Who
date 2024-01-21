@@ -36,7 +36,8 @@ public class SuperSocketListener implements ActionListener {
                     } else {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
                     }
-                } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT) {
+                } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT && strMessage.substring(0, 2) != "10") {
+                    System.out.println("disconnect");
                     Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0,1)) == PICK) {
                     String args[] = strMessage.split(",");
