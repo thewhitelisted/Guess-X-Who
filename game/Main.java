@@ -27,14 +27,14 @@ import javax.swing.text.DefaultCaret;
 import network.SuperSocketListener;
 
 public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener {
-    private JFrame main_frame = new JFrame("Guess X Who");
+    public static JFrame main_frame = new JFrame("Guess X Who");
     private JPanel main_panel = new JPanel();
     Timer theTimer = new Timer(1000/48, this);
     // connect and create frames
-    private JFrame connect_frame = new JFrame("Connect to a game");
     private JPanel connect_panel = new JPanel();
-    private JFrame create_frame = new JFrame("Create a game");
     private JPanel create_panel = new JPanel();
+
+    public static PickFrame pick_frame = new PickFrame();
 
     // connect and create panel components
     private JLabel connect_ip_label = new JLabel("IP Address");
@@ -85,10 +85,12 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
             chat_input.setText("");
         } else if (e.getSource() == create_game) {
             // create dialog box to get port number
-            create_frame.setVisible(true);
+            main_frame.setContentPane(create_panel);
+            main_frame.pack();
         } else if (e.getSource() == join_game) {
             // create dialog box to get ip address and port number
-            connect_frame.setVisible(true);
+            main_frame.setContentPane(connect_panel);
+            main_frame.pack();
         } else if (e.getSource() == exit_game) {
             ssl.ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssl.ssm.getMyAddress());
             chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() + " has left." + "\n");
@@ -101,13 +103,15 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
                     + connect_port.getText() + "\n");
             chat_box.append("[SYS] User: " + ssl.ssm.getMyAddress() + " has joined.\n");
             ssl.ssm.sendText(SuperSocketListener.CONNECT + "," + ssl.ssm.getMyAddress());
-            connect_frame.setVisible(false);
+            main_frame.setContentPane(main_panel);
+            main_frame.pack();
         } else if (e.getSource() == create_button) {
             // create server
             ssl = new SuperSocketListener(Integer.parseInt(create_port.getText()));
             chat_box.append("[SYS] Server created at ip address: " + ssl.ssm.getMyAddress() + " and port number: "
                     + create_port.getText() + "\n");
-            create_frame.setVisible(false);
+            main_frame.setContentPane(main_panel);
+            main_frame.pack();
         }
 
     }
@@ -243,36 +247,30 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         main_frame.setContentPane(main_panel);
         main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
 
-        connect_panel.setPreferredSize(new Dimension(300, 300));
-        connect_frame.setContentPane(connect_panel);
-        connect_frame.pack();
-        connect_frame.setResizable(false);
+        connect_panel.setPreferredSize(new Dimension(1280, 720));
         connect_panel.setLayout(null);
 
         // connect components
-        connect_ip_label.setBounds(0, 0, 300, 50);
+        connect_ip_label.setBounds(490, 235, 300, 50);
         connect_panel.add(connect_ip_label);
-        connect_ip.setBounds(0, 50, 300, 50);
+        connect_ip.setBounds(490, 285, 300, 50);
         connect_panel.add(connect_ip);
-        connect_port_label.setBounds(0, 100, 300, 50);
+        connect_port_label.setBounds(490, 335, 300, 50);
         connect_panel.add(connect_port_label);
-        connect_port.setBounds(0, 150, 300, 50);
+        connect_port.setBounds(490, 385, 300, 50);
         connect_panel.add(connect_port);
-        connect_button.setBounds(0, 200, 300, 50);
+        connect_button.setBounds(490, 455, 300, 50);
         connect_panel.add(connect_button);
 
-        create_panel.setPreferredSize(new Dimension(300, 300));
-        create_frame.setContentPane(create_panel);
-        create_frame.pack();
-        create_frame.setResizable(false);
+        create_panel.setPreferredSize(new Dimension(1280, 720));
         create_panel.setLayout(null);
 
         // create components
-        create_port_label.setBounds(0, 0, 300, 50);
+        create_port_label.setBounds(490, 255, 300, 50);
         create_panel.add(create_port_label);
-        create_port.setBounds(0, 50, 300, 50);
+        create_port.setBounds(490, 305, 300, 50);
         create_panel.add(create_port);
-        create_button.setBounds(0, 100, 300, 50);
+        create_button.setBounds(490, 355, 300, 50);
         create_panel.add(create_button);
 
         menu.add(create_game);
