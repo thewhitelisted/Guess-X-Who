@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 import network.SuperSocketListener;
 
@@ -68,6 +69,9 @@ public class QuestionPanel extends JPanel implements ActionListener{
         this.add(characterLabel);
         this.add(infoButton);
         this.add(infoLabel);
+
+        DefaultCaret caret = (DefaultCaret) questionLog.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
 
@@ -169,7 +173,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
                 }
             }
-            if (characterLabel.getText() != "Click on a face" || mainQuestion.getSelectedItem() != "Character"){
+            if (mainQuestion.getSelectedItem() != "Character"){
                 questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
                 Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
             }
