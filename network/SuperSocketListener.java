@@ -19,7 +19,8 @@ public class SuperSocketListener implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == ssm) {
             String strMessage = ssm.readText();
-            System.out.println(strMessage);
+            System.out.println(strMessage.substring(1,2));
+            System.out.println(strMessage.substring(1,2) != "0");
             if (strMessage != null) {
                 if (Integer.parseInt(strMessage.substring(0, 1)) == CONNECT) {
                     if (!this.blnServer) {
@@ -36,7 +37,7 @@ public class SuperSocketListener implements ActionListener {
                     } else {
                         Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
                     }
-                } else if (Integer.parseInt(strMessage.substring(0, 1)) == DISCONNECT && strMessage.substring(1, 2) != "0") {
+                } else if (strMessage.substring(0, 2) == "1,") {
                     System.out.println("disconnect");
                     Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has left." + "\n");
                 } else if (Integer.parseInt(strMessage.substring(0,1)) == PICK) {
@@ -83,7 +84,7 @@ public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append("[SYS] Game started." + "\n");
                     Main.main_frame.setContentPane(new PickFrame());
                     Main.main_frame.pack();
-                } else if (Integer.parseInt(strMessage) == TURN) {
+                } else if (Integer.parseInt(strMessage.substring(0,2)) == TURN) {
                     System.out.println("turn");
                     Main.question_panel.submitButton.setEnabled(true);
                     QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
