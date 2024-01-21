@@ -32,6 +32,8 @@ final public class PickFrame extends JPanel implements ActionListener{
                 Game.player1 = Game.getCharFromName(strCharacterQuestions[characters.getSelectedIndex()]);
             } else {
                 Game.player2 = Game.getCharFromName(strCharacterQuestions[characters.getSelectedIndex()]);
+                Main.main_frame.setContentPane(Main.main_panel);
+                Main.main_frame.pack();
             }
             Main.ssl.ssm.sendText(SuperSocketListener.PICK + "," + strCharacterQuestions[characters.getSelectedIndex()]);
         }

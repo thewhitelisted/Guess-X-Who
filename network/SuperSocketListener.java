@@ -43,6 +43,7 @@ public class SuperSocketListener implements ActionListener {
                         // start from arg 1
                         Game.player2 = Game.getCharFromName(args[1]);
                         Main.main_frame.setContentPane(Main.main_panel);
+                        Main.main_frame.pack();
                     }
                     // now that player one has picked (client), server picks
                     if (this.blnServer) {
