@@ -34,10 +34,11 @@ public class GamePanel extends JPanel implements ActionListener{
     BufferedImage backside10 = null;
     BufferedImage backside11 = null;
     BufferedImage backside12 = null;
-    BufferedImage cardBackFrames[] = new BufferedImage[13];
+    BufferedImage cardBackFrames[] = new BufferedImage[14];
     Character[] characters = new Character[25];
     BufferedImage flipImage = null;
     int intAnimationFrame = 0;
+    int intNewAnimationFrame = 0;
     public Character[] getCharacters(){
         return characters;
     }
@@ -79,8 +80,8 @@ public class GamePanel extends JPanel implements ActionListener{
             intAnimationFrame++;
             if(intAnimationFrame == 12){
                 timer.stop();
-                intAnimationFrame=0;
-                timer.restart();
+                flipImage = cardBackFrames[intNewAnimationFrame];
+                intAnimationFrame = 0;
             }
             repaint();
         }
@@ -125,7 +126,7 @@ public class GamePanel extends JPanel implements ActionListener{
 cardBackFrames = new BufferedImage[] {
             redcard, backside1, backside2, backside3, backside4, backside5,
             backside6, backside7, backside8, backside9, backside10,
-            backside11, backside12
+            backside11, backside12, backside
         };
         characters = Character.importCharacters();
     }
