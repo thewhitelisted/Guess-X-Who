@@ -21,12 +21,14 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.Timer;
+import javax.swing.event.MenuEvent;
+import javax.swing.event.MenuListener;
 import javax.swing.text.DefaultCaret;
 
 
 import network.SuperSocketListener;
 
-public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener {
+public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener, MenuListener {
     public static JFrame main_frame = new JFrame("Guess X Who");
     private JPanel main_panel = new JPanel();
     Timer theTimer = new Timer(1000/48, this);
@@ -61,6 +63,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     // JMenuBar
     private JMenuBar menu_bar = new JMenuBar();
     private JMenu menu = new JMenu("Game");
+    private JMenu home = new JMenu("Home");
     private JMenuItem create_game = new JMenuItem("Create Game");
     private JMenuItem join_game = new JMenuItem("Join Game");
     private JMenuItem exit_game = new JMenuItem("Exit Game");
@@ -223,6 +226,21 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 	public void mouseDragged(MouseEvent e){
 	
     }
+
+    @Override
+    public void menuSelected(MenuEvent e) {
+        main_frame.setContentPane(main_panel);
+    }
+
+    @Override
+    public void menuDeselected(MenuEvent e) {
+        
+    }
+
+    @Override
+    public void menuCanceled(MenuEvent e) {
+        
+    }
     
     private int angle = 0;
     // private void cardAnimation(ActionEvent e, int index,int row, int column){
@@ -277,6 +295,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         menu.add(join_game);
         menu.add(exit_game);
         menu_bar.add(menu);
+        menu_bar.add(home);
         main_frame.setJMenuBar(menu_bar);
 
         create_game.addActionListener(this);
@@ -284,6 +303,8 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         exit_game.addActionListener(this);
         connect_button.addActionListener(this);
         create_button.addActionListener(this);
+
+        home.addMenuListener(this);
 
         main_panel.setBounds(0, 0, 1280, 720);
         main_panel.setLayout(null);
