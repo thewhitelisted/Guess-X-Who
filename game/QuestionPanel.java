@@ -57,9 +57,9 @@ public class QuestionPanel extends JPanel implements ActionListener{
         answerLabel.setBounds(10, 75, 200, 20);
         answerLabel.setVisible(false);
         yesButton.setBounds(10, 100, 100, 20);
-        answerLabel.setVisible(false);
+        yesButton.setVisible(false);
         noButton.setBounds(120, 100, 100, 20);
-        answerLabel.setVisible(false);
+        noButton.setVisible(false);
 
         questionLog.setEditable(false);
 
