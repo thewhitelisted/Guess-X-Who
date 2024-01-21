@@ -50,6 +50,7 @@ public class Game {
         if (index >= 0 && index < Main.game_panel.characters.length && Main.game_panel.characters[index] != null) {
             // Flip the card with animation
             System.out.println(returnCharacterData(Main.game_panel.characters[index]));
+            Main.question_panel.infoLabel.setVisible(false);
             return returnCharacterData(Main.game_panel.characters[index]);
             //Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
             //Main.game_panel.repaint();

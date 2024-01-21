@@ -56,7 +56,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     public JScrollPane chat_scroll = new JScrollPane(chat_box);
 
     // question panel will contain the question box, and the question input
-    private QuestionPanel question_panel = new QuestionPanel();
+    public static QuestionPanel question_panel = new QuestionPanel();
 
     // JMenuBar
     private JMenuBar menu_bar = new JMenuBar();

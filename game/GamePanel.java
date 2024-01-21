@@ -3,6 +3,7 @@ package game;
 import java.awt.Color;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -10,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements ActionListener{
     // GamePanel is 720 x 720
     // Each image can be 120 x 120, with 20 size gap between and at the edges
     int intXPos = 20;
@@ -18,10 +19,7 @@ public class GamePanel extends JPanel {
     int intMouseX = 300;
     int intMouseY = 300;
     int cardindex = 0;
-    //Timer timer = new Timer(1000/48, this);
-     /*
-    BufferedImage redcard = null;
-    */
+    Timer timer = new Timer(1000/24, this);
     BufferedImage backside = null;
     BufferedImage redcard = null;
     BufferedImage backside1 = null;
@@ -36,9 +34,11 @@ public class GamePanel extends JPanel {
     BufferedImage backside10 = null;
     BufferedImage backside11 = null;
     BufferedImage backside12 = null;
-    BufferedImage cardBackFrames[] = new BufferedImage[13];
+    BufferedImage cardBackFrames[] = new BufferedImage[14];
     Character[] characters = new Character[25];
-
+    BufferedImage flipImage = null;
+    int intAnimationFrame = 0;
+    int intNewAnimationFrame = 0;
     public Character[] getCharacters(){
         return characters;
     }
@@ -56,9 +56,8 @@ public class GamePanel extends JPanel {
                     break;
                 }
                 if (characters[y * 5 + x].isFlipped) {
-                    //for(int i = 0; i < cardBackFrames.length; i++){
-                        g.drawImage(cardBackFrames[3], intXPos, intYPos, null);
-                    //}
+                    timer.start();
+                    g.drawImage(flipImage, intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
@@ -73,20 +72,22 @@ public class GamePanel extends JPanel {
         intXPos = 20;
         intYPos = 20;
     }
-    /*
+
     @Override
     public void actionPerformed(ActionEvent e) {
         if(e.getSource() == timer){
-            cardindex++;
-            if(cardindex >=cardBackFrames.length){
-                cardindex = 0;
+            flipImage = cardBackFrames[intAnimationFrame];
+            intAnimationFrame++;
+            if(intAnimationFrame == 12){
                 timer.stop();
-}
+                flipImage = cardBackFrames[intNewAnimationFrame];
+                intAnimationFrame = 0;
+            }
             repaint();
-            timer.stop();
         }
+        
     }
-    */
+
     public GamePanel() {
         try {
             backside = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard.jpg"));
@@ -120,12 +121,12 @@ public class GamePanel extends JPanel {
                 backside12 = ImageIO.read(new File("game/img/backofcard12.jpg"));
                 redcard = ImageIO.read(new File("game/img/redcard.jpg"));
             } catch (IOException e1) {
-            }
+                            }
         }
-        cardBackFrames = new BufferedImage[] {
+cardBackFrames = new BufferedImage[] {
             redcard, backside1, backside2, backside3, backside4, backside5,
             backside6, backside7, backside8, backside9, backside10,
-            backside11, backside12
+            backside11, backside12, backside
         };
         characters = Character.importCharacters();
     }
