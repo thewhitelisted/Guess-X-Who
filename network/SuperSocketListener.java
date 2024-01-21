@@ -62,6 +62,7 @@ public class SuperSocketListener implements ActionListener {
                 } else if (Integer.parseInt(strMessage.substring(0, 1)) == START) {
                     Main.chat_box.append("[SYS] Game started." + "\n");
                     Main.main_frame.setContentPane(new PickFrame());
+                    Main.main_frame.pack();
                 }
             }
         }
