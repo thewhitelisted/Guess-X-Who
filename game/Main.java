@@ -176,30 +176,30 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
             for (int count = 0; count <= 10; count++){
                 //Name, Hair Colour, Eye Colour, Hat, Glasses, Facial, Skin, Hair Length, Expression, Face, Gender
                 if (count == 0){
-                    question_panel.questionLog.append("Name: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Name: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 1){
-                    question_panel.questionLog.append("Hair Colour: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Hair Colour: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 2){
-                    question_panel.questionLog.append("Eye Colour: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Eye Colour: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 3){
-                    question_panel.questionLog.append("Hat Type: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Hat Type: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 4){
-                    question_panel.questionLog.append("Glasses Type: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Glasses Type: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 5){
-                    question_panel.questionLog.append("Facial Hair: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Facial Hair: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 6){
-                    question_panel.questionLog.append("Skin Colour: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Skin Colour: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 7){
-                    question_panel.questionLog.append("Hair Length: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Hair Length: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 8){
-                    question_panel.questionLog.append("Expression: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Expression: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 9){
-                    question_panel.questionLog.append("Face Shape: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Face Shape: " + Game.infoClick(e)[count] + "\n");
                 }else if (count == 10){
-                    question_panel.questionLog.append("Gender: " + Game.infoClick(e)[count] + "\n");
+                    QuestionPanel.questionLog.append("Gender: " + Game.infoClick(e)[count] + "\n");
                 }
             }
-            question_panel.questionLog.append("\n");
+            QuestionPanel.questionLog.append("\n");
             question_panel.blnInfo = false;
         }else if(question_panel.mainQuestion.getSelectedItem() == "Character"){
             question_panel.subQuestion.setVisible(false);
