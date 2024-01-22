@@ -11,7 +11,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class GamePanel extends JPanel implements ActionListener{
+public class GamePanel extends JPanel implements ActionListener {
     // GamePanel is 720 x 720
     // Each image can be 120 x 120, with 20 size gap between and at the edges
     int intXPos = 20;
@@ -19,43 +19,51 @@ public class GamePanel extends JPanel implements ActionListener{
     int intMouseX = 300;
     int intMouseY = 300;
     int cardindex = 0;
-    Timer timer = new Timer(1000/24, this);
-    BufferedImage backside = null;
-    BufferedImage redcard = null;
-    BufferedImage backside1 = null;
-    BufferedImage backside2 = null;
-    BufferedImage backside3 = null;
-    BufferedImage backside4 = null;
-    BufferedImage backside5 = null;
-    BufferedImage backside6 = null;
-    BufferedImage backside7 = null;
-    BufferedImage backside8 = null;
-    BufferedImage backside9 = null;
-    BufferedImage backside10 = null;
-    BufferedImage backside11 = null;
-    BufferedImage backside12 = null;
-    BufferedImage cardBackFrames[] = new BufferedImage[14];
-    Character[] characters = new Character[25];
-    BufferedImage flipImage = null;
-    int intAnimationFrame = 0;
-    int intNewAnimationFrame = 0;
-    public Character[] getCharacters(){
+    Timer timer = new Timer(1000 / 24, this);
+    public BufferedImage backside = null;
+    public BufferedImage redcard = null;
+    public BufferedImage backside1 = null;
+    public BufferedImage backside2 = null;
+    public BufferedImage backside3 = null;
+    public BufferedImage backside4 = null;
+    public BufferedImage backside5 = null;
+    public BufferedImage backside6 = null;
+    public BufferedImage backside7 = null;
+    public BufferedImage backside8 = null;
+    public BufferedImage backside9 = null;
+    public BufferedImage backside10 = null;
+    public BufferedImage backside11 = null;
+    public BufferedImage backside12 = null;
+    public BufferedImage cardBackFrames[] = new BufferedImage[14];
+    public Character[] characters = new Character[25];
+    public BufferedImage flipImage = null;
+    public int intAnimationFrame = 0;
+    public boolean flipOnce = true;
+    public int x;
+    public int y;
+    public int currentFlippingCardIndex = -1;
+
+    public Character[] getCharacters() {
         return characters;
     }
-    public void cardFlip(BufferedImage[] cardBackFrames, ActionEvent e){  
-        
-    }
+
+
+
     public void paintComponent(Graphics g) {
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
-        for (int x = 0; x < 5; x++) {
+        for (x = 0; x < 5; x++) {
             intYPos = 20;
-            for (int y = 0; y < 5; y++) {
+            for (y = 0; y < 5; y++) {
+                int index = y * 5 + x;
+
                 g.fillRect(intXPos, intYPos, 120, 120);
-                if (characters[y * 5 + x] == null) {
+                if (characters[index] == null) {
                     break;
                 }
-                if (characters[y * 5 + x].isFlipped) {
+
+                if (characters[index].isFlipped) {
+                    currentFlippingCardIndex = index;
                     timer.start();
                     g.drawImage(flipImage, intXPos, intYPos, null);
                     intYPos += 140;
@@ -75,17 +83,20 @@ public class GamePanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(e.getSource() == timer){
+        if (e.getSource() == timer) {
+            
             flipImage = cardBackFrames[intAnimationFrame];
             intAnimationFrame++;
-            if(intAnimationFrame == 12){
+            if (intAnimationFrame == 13) {
+
                 timer.stop();
-                flipImage = cardBackFrames[intNewAnimationFrame];
+                if (!characters[currentFlippingCardIndex].isFlipped)
                 intAnimationFrame = 0;
+
+
             }
             repaint();
         }
-        
     }
 
     public GamePanel() {
@@ -100,9 +111,12 @@ public class GamePanel extends JPanel implements ActionListener{
             backside7 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard7.jpg"));
             backside8 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard8.jpg"));
             backside9 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard9.jpg"));
-            backside10 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard10.jpg"));
-            backside11 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard11.jpg"));
-            backside12 = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard12.jpg"));
+            backside10 = ImageIO
+                    .read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard10.jpg"));
+            backside11 = ImageIO
+                    .read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard11.jpg"));
+            backside12 = ImageIO
+                    .read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/backofcard12.jpg"));
             redcard = ImageIO.read(GamePanel.class.getClassLoader().getResourceAsStream("game/img/redcard.jpg"));
         } catch (IllegalArgumentException | IOException e) {
             try {
@@ -121,15 +135,13 @@ public class GamePanel extends JPanel implements ActionListener{
                 backside12 = ImageIO.read(new File("game/img/backofcard12.jpg"));
                 redcard = ImageIO.read(new File("game/img/redcard.jpg"));
             } catch (IOException e1) {
-                            }
+            }
         }
-cardBackFrames = new BufferedImage[] {
-            redcard, backside1, backside2, backside3, backside4, backside5,
-            backside6, backside7, backside8, backside9, backside10,
-            backside11, backside12, backside
+        cardBackFrames = new BufferedImage[] {
+                redcard, backside1, backside2, backside3, backside4, backside5,
+                backside6, backside7, backside8, backside9, backside10,
+                backside11, backside12, backside
         };
         characters = Character.importCharacters();
     }
-
-   
 }
