@@ -6,12 +6,12 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
-
 import javax.imageio.ImageIO;
 import javax.swing.Timer;
 
-public class Game implements ActionListener {
-    public static int turn = 0;
+public class Game implements ActionListener{
+    public static Character player1;
+    public static Character player2;
 
     public static boolean checkGuess(Character guess, Character answer) {
         return guess == answer;
@@ -102,5 +102,14 @@ public class Game implements ActionListener {
             Main.game_panel.repaint();
         }
         */
+    }
+
+    public static Character getCharFromName(String name) {
+        for (Character character : Main.game_panel.characters) {
+            if (character.strName.equals(name)) {
+                return character;
+            }
+        }
+        return null;
     }
 }

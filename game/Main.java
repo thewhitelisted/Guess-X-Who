@@ -30,7 +30,8 @@ import network.SuperSocketListener;
 
 public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener, MenuListener {
     public static JFrame main_frame = new JFrame("Guess X Who");
-    private JPanel main_panel = new JPanel();
+    public static JPanel main_panel = new JPanel();
+    
     Timer theTimer = new Timer(1000/48, this);
     // connect and create frames
     private JPanel connect_panel = new JPanel();
