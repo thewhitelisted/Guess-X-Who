@@ -19,7 +19,7 @@ public class Game implements ActionListener {
 
     Timer timer = new Timer(1000 / 48, this);
     public int cardindex = 0;
-
+    public static int index;
     /* 
     public void startCardFlip() {
         timer.start();
@@ -44,13 +44,11 @@ public class Game implements ActionListener {
         int MouseY = e.getY();
         int column = (MouseX - 20) / 140;
         int row = (MouseY - 20) / 140;
-        int index = row * 5 + column;
-        if (index >= 0 && index < Main.game_panel.characters.length && Main.game_panel.characters[index] != null && Main.game_panel.onlyOneAnimation == -1 || Main.game_panel.onlyOneAnimation == index) {
-            // Flip the card with animation
-             Main.game_panel.startCardFlip(index);
-            Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
-            Main.game_panel.repaint();
-        }
+        index = row *5 + column;
+        System.out.println(index + "index");
+        Main.game_panel.startCardFlip(index);
+        Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
+        Main.game_panel.repaint();
     }
 
     public static String guessClick(MouseEvent e) {

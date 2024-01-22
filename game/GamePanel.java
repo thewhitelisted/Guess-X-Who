@@ -18,7 +18,6 @@ public class GamePanel extends JPanel implements ActionListener {
     int intYPos = 20;
     int intMouseX = 300;
     int intMouseY = 300;
-    int cardindex = 0;
     Timer timer = new Timer(1000 / 24, this);
     public BufferedImage backside = null;
     public BufferedImage redcard = null;
@@ -38,47 +37,45 @@ public class GamePanel extends JPanel implements ActionListener {
     public Character[] characters = new Character[25];
     public BufferedImage flipImage = null;
     public int intAnimationFrame = 0;
-    public boolean flipOnce = true;
     public int x;
     public int y;
-    public int onlyOneAnimation = -1;
+    public int newCardIndex;
 
     public Character[] getCharacters() {
         return characters;
     }
+   
     
     public void startCardFlip(int index){
-        if(onlyOneAnimation == -1){
-            timer.start();
-        }     
+            timer.start();   
+            System.out.println(index + "index");
     }
 
     public void paintComponent(Graphics g) {
         boolean needRepaint = false;
-
+        
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
         for (x = 0; x < 5; x++) {
             intYPos = 20;
             for (y = 0; y < 5; y++) {
-                int index = y * 5 + x;
 
                 g.fillRect(intXPos, intYPos, 120, 120);
-                if (characters[index] == null) {
+                if (characters[y*5+x] == null) {
                     break;
                 }
 
-
-                if (characters[index].isFlipped) {
+                if (characters[Game.index].isFlipped) {
                     //timer.start();
+                    //System.out.println(newCardIndex + "new card index");
+                    System.out.println(y*5+x);
                     g.drawImage(flipImage, intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
-
-                g.drawImage(characters[index].imgIcon, intXPos, intYPos, null);
+                g.drawImage(characters[y*5+x].imgIcon, intXPos, intYPos, null);
                 g.setColor(Color.WHITE);
-                g.drawString(characters[index].strName, intXPos + 5, intYPos + 10);
+                g.drawString(characters[y*5+x].strName, intXPos + 5, intYPos + 10);
                 // System.out.println(intXPos);
                 intYPos += 140;
             }
