@@ -10,6 +10,7 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
+import javax.swing.text.DefaultCaret;
 
 import network.SuperSocketListener;
 
@@ -33,7 +34,8 @@ public class QuestionPanel extends JPanel implements ActionListener{
     public static JButton yesButton = new JButton("Yes");
     public static JButton noButton = new JButton("No");
 
-    JLabel characterLabel = new JLabel();
+    JLabel characterLabel = new JLabel("Click on a face");
+    JLabel infoLabel = new JLabel("Click on a face");
 
     public static JTextArea questionLog = new JTextArea();
     JScrollPane questionScroll = new JScrollPane(questionLog);
@@ -60,10 +62,12 @@ public class QuestionPanel extends JPanel implements ActionListener{
         yesButton.setVisible(false);
         noButton.setBounds(120, 100, 100, 20);
         noButton.setVisible(false);
+        infoLabel.setBounds(115, 50, 100, 20);
 
         questionLog.setEditable(false);
 
         characterLabel.setVisible(false);
+        infoLabel.setVisible(false);
 
         infoButton.addActionListener(this);
         submitButton.addActionListener(this);
@@ -77,6 +81,10 @@ public class QuestionPanel extends JPanel implements ActionListener{
         this.add(answerLabel);
         this.add(yesButton);
         this.add(noButton);
+        this.add(infoLabel);
+
+        DefaultCaret caret = (DefaultCaret) questionLog.getCaret();
+        caret.setUpdatePolicy(DefaultCaret.ALWAYS_UPDATE);
     }
 
 
@@ -87,6 +95,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
             switch (mainQuestion.getSelectedItem().toString()) {
                 case "Eye Color":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strEyeQuestions){
                         subQuestion.addItem(str);
@@ -94,6 +103,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Hair Color":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strHairQuestions){
                         subQuestion.addItem(str);
@@ -101,6 +111,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Skin Color":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strSkinQuestions){
                         subQuestion.addItem(str);
@@ -108,6 +119,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Hair Length":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strLengthQuestions){
                         subQuestion.addItem(str);
@@ -115,6 +127,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Expression":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strExpressionQuestions){
                         subQuestion.addItem(str);
@@ -122,6 +135,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Hat Type":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strHatQuestions){
                         subQuestion.addItem(str);
@@ -129,6 +143,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Glasses Type":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strGlassesQuestions){
                         subQuestion.addItem(str);
@@ -136,6 +151,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Face Shape":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strFaceQuestions){
                         subQuestion.addItem(str);
@@ -143,6 +159,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Gender":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strGenderQuestions){
                         subQuestion.addItem(str);
@@ -150,26 +167,32 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
                 case "Facial Hair":
                     characterLabel.setVisible(false);
+                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(true);
                     for (String str : strFacialQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Character":
-                    characterLabel.setVisible(false);
-                    subQuestion.setVisible(true);
+                    characterLabel.setVisible(true);
+                    characterLabel.setText("Click on a face");
+                    subQuestion.setVisible(false);
                     break;
             }
         }else if (e.getSource() == submitButton){
             if (mainQuestion.getSelectedItem() == "Character"){
-                questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
-                Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+                if (characterLabel.getText() != "Click on a face"){
+                    questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
+                    Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+                }
             }
-            questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
-            Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
-            submitButton.setEnabled(false);
+            if (mainQuestion.getSelectedItem() != "Character"){
+                questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
+                Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
+            }
         }else if (e.getSource() == infoButton){
             blnInfo = true;
+            infoLabel.setVisible(true);
         }
     }
 }
