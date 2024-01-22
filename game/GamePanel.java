@@ -35,11 +35,9 @@ public class GamePanel extends JPanel implements ActionListener {
     public BufferedImage backside12 = null;
     public BufferedImage cardBackFrames[] = new BufferedImage[14];
     public Character[] characters = new Character[25];
-    public BufferedImage flipImage = null;
     public int intAnimationFrame = 0;
     public int x;
     public int y;
-    public int newCardIndex;
 
     public Character[] getCharacters() {
         return characters;
@@ -52,7 +50,6 @@ public class GamePanel extends JPanel implements ActionListener {
     }
 
     public void paintComponent(Graphics g) {
-        boolean needRepaint = false;
         
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
@@ -65,11 +62,14 @@ public class GamePanel extends JPanel implements ActionListener {
                     break;
                 }
 
-                if (characters[Game.index].isFlipped) {
-                    //timer.start();
-                    //System.out.println(newCardIndex + "new card index");
-                    System.out.println(y*5+x);
-                    g.drawImage(flipImage, intXPos, intYPos, null);
+                if (characters[y*5+x].flipping) {
+                    g.drawImage(cardBackFrames[intAnimationFrame], intXPos, intYPos, null);
+                    intYPos += 140;
+                    continue;
+                }
+
+                if (characters[y*5+x].isFlipped) {
+                    g.drawImage(backside, intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
@@ -83,22 +83,20 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         intXPos = 20;
         intYPos = 20;
-
-        if (needRepaint) repaint();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
-            
-            flipImage = cardBackFrames[intAnimationFrame];
             intAnimationFrame++;
             if (intAnimationFrame == 13) {
-
                 timer.stop();
                 intAnimationFrame = 0;
-
-
+                for (int i = 0; i < characters.length; i++) {
+                    if (characters[i].flipping) {
+                        characters[i].flipping = false;
+                    }
+                }
             }
             repaint();
         }

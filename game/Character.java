@@ -99,15 +99,14 @@ public class Character {
     public FaceType faceType;
     public Gender gender;
     public boolean isFlipped = false;
-    public int intAnimationFrame = 0;
-    //public boolean flipping = false;
+    public boolean flipping = false;
+    
     public boolean isFlipped(){
         return isFlipped;
     }
     public void setFlipped(boolean flipped){
         isFlipped = flipped;
     }
-    public int flipFrame = 0;
     public static Character[] importCharacters() {
         BufferedReader br = null;
         try {

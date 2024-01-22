@@ -62,7 +62,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
         yesButton.setVisible(false);
         noButton.setBounds(120, 100, 100, 20);
         noButton.setVisible(false);
-        infoLabel.setBounds(115, 50, 100, 20);
+        infoLabel.setBounds(115, 35, 100, 20);
 
         questionLog.setEditable(false);
 
@@ -92,90 +92,63 @@ public class QuestionPanel extends JPanel implements ActionListener{
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == mainQuestion){
             subQuestion.removeAllItems();
+            characterLabel.setVisible(false);
+            characterLabel.setText("Click on a face");
+            subQuestion.setVisible(true);
             switch (mainQuestion.getSelectedItem().toString()) {
                 case "Eye Color":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
+                    
                     for (String str : strEyeQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Color":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strHairQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Skin Color":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strSkinQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hair Length":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strLengthQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Expression":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strExpressionQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Hat Type":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strHatQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Glasses Type":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strGlassesQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Face Shape":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strFaceQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Gender":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strGenderQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Facial Hair":
-                    characterLabel.setVisible(false);
-                    characterLabel.setText("Click on a face");
-                    subQuestion.setVisible(true);
                     for (String str : strFacialQuestions){
                         subQuestion.addItem(str);
                     }
                     break;
                 case "Character":
                     characterLabel.setVisible(true);
-                    characterLabel.setText("Click on a face");
                     subQuestion.setVisible(false);
                     break;
             }
