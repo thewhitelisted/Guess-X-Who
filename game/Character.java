@@ -99,6 +99,7 @@ public class Character {
     public FaceType faceType;
     public Gender gender;
     public boolean isFlipped = false;
+    public int intAnimationFrame = 0;
     //public boolean flipping = false;
     public boolean isFlipped(){
         return isFlipped;

@@ -41,15 +41,21 @@ public class GamePanel extends JPanel implements ActionListener {
     public boolean flipOnce = true;
     public int x;
     public int y;
-    public int currentFlippingCardIndex = -1;
+    public int onlyOneAnimation = -1;
 
     public Character[] getCharacters() {
         return characters;
     }
-
-
+    
+    public void startCardFlip(int index){
+        if(onlyOneAnimation == -1){
+            timer.start();
+        }     
+    }
 
     public void paintComponent(Graphics g) {
+        boolean needRepaint = false;
+
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
         for (x = 0; x < 5; x++) {
@@ -62,16 +68,17 @@ public class GamePanel extends JPanel implements ActionListener {
                     break;
                 }
 
+
                 if (characters[index].isFlipped) {
-                    currentFlippingCardIndex = index;
-                    timer.start();
+                    //timer.start();
                     g.drawImage(flipImage, intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
-                g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
+
+                g.drawImage(characters[index].imgIcon, intXPos, intYPos, null);
                 g.setColor(Color.WHITE);
-                g.drawString(characters[y * 5 + x].strName, intXPos + 5, intYPos + 10);
+                g.drawString(characters[index].strName, intXPos + 5, intYPos + 10);
                 // System.out.println(intXPos);
                 intYPos += 140;
             }
@@ -79,6 +86,8 @@ public class GamePanel extends JPanel implements ActionListener {
         }
         intXPos = 20;
         intYPos = 20;
+
+        if (needRepaint) repaint();
     }
 
     @Override
@@ -90,7 +99,6 @@ public class GamePanel extends JPanel implements ActionListener {
             if (intAnimationFrame == 13) {
 
                 timer.stop();
-                if (!characters[currentFlippingCardIndex].isFlipped)
                 intAnimationFrame = 0;
 
 
