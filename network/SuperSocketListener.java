@@ -145,7 +145,7 @@ final public class SuperSocketListener implements ActionListener {
         } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
             Main.question_panel.submitButton.setEnabled(true);
             QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
-        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
+        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("1")) {
             Main.question_panel.submitButton.setEnabled(false);
             Main.question_panel.mainQuestion.setEnabled(false);
             Main.question_panel.subQuestion.setEnabled(false);
