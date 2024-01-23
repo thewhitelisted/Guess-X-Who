@@ -14,7 +14,7 @@ final public class PickFrame extends JPanel implements ActionListener{
     JPanel panel;
     JLabel title = new JLabel("Pick a character");
     JButton pick = new JButton("Pick");
-    String[] strCharacterQuestions = {"Adeline", "Aidan", "Alex", "Andrea", "Ariana", "Brandon", "Caitlyn", "Chloe", "Donald", "Fizan", "Jennifer", "Jensen", "Jeremy", "Johnny", "Jong", "Kimmy", "Milly", "Nathan", "Peter", "Poon", "Samira", "Seamus", "Taylor", "Thomphson", "Xinyan"};
+    String[] strCharacterQuestions = {"adeline", "aidan", "alex", "andrea", "ariana", "brandon", "caitlyn", "chloe", "donald", "fizan", "jennifer", "jensen", "jeremy", "johnny", "jong", "kimmy", "milly", "nathan", "peter", "poon", "samira", "seamus", "taylor", "thomphson", "xinyan"};
     JComboBox<String> characters = new JComboBox<String>(strCharacterQuestions);
 
     public PickFrame(){
