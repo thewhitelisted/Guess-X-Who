@@ -37,8 +37,8 @@ public class QuestionPanel extends JPanel implements ActionListener{
     String[] strGenderQuestions = {"Male", "Female"};
     String[] strFacialQuestions = {"None", "Moustache", "Beard"};
 
-    JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
-    JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
+    public JComboBox<String> mainQuestion = new JComboBox<>(strMainQuestions);
+    public JComboBox<String> subQuestion = new JComboBox<>(strEyeQuestions);
 
     public static JLabel answerLabel = new JLabel("ANSWER THE QUESTION");
     public static JButton yesButton = new JButton("Yes");

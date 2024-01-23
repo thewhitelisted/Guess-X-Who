@@ -21,7 +21,7 @@ import game.QuestionPanel;
  */
 final public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
-            PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10;
+            PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10, END = 11;
     public boolean blnServer;
     public SuperSocketMaster ssm;
     public int counter = 1;
@@ -90,6 +90,11 @@ final public class SuperSocketListener implements ActionListener {
                     Main.chat_box.append("[SYS] Game ended." + "\n");
                     ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly.");
                     ssm.sendText(CHAT + "," + "[SYS] Game ended.");
+                    // disable everything
+                    Main.question_panel.submitButton.setEnabled(false);
+                    Main.question_panel.mainQuestion.setEnabled(false);
+                    Main.question_panel.subQuestion.setEnabled(false);
+                    ssm.sendText(END + "");
                 }
             }
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == ANSWER) {
@@ -116,9 +121,13 @@ final public class SuperSocketListener implements ActionListener {
             Main.chat_box.append("[SYS] Game started." + "\n");
             Main.main_frame.setContentPane(new PickFrame());
             Main.main_frame.pack();
-        } else if (!strMessage.substring(1, 2).equals(",")) {
+        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
             Main.question_panel.submitButton.setEnabled(true);
             QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
+        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
+            Main.question_panel.submitButton.setEnabled(false);
+            Main.question_panel.mainQuestion.setEnabled(false);
+            Main.question_panel.subQuestion.setEnabled(false);
         }
     }
 
