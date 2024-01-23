@@ -8,7 +8,7 @@ import game.Main;
 import game.PickFrame;
 import game.QuestionPanel;
 
-public class SuperSocketListener implements ActionListener {
+final public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
             PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10;
     public boolean blnServer;
@@ -39,6 +39,7 @@ public class SuperSocketListener implements ActionListener {
                 ssm.sendText(START + "");
             } else if (counter > 2) {
                 ssm.sendText(ERROR + "401" + strMessage.substring(2));
+                counter = 2;
                 return;
             } else {
                 Main.chat_box.append("[SYS] User: " + strMessage.substring(2) + " has joined." + "\n");
@@ -90,7 +91,7 @@ public class SuperSocketListener implements ActionListener {
             Main.chat_box.append("[SYS] Game started." + "\n");
             Main.main_frame.setContentPane(new PickFrame());
             Main.main_frame.pack();
-            } else if (!strMessage.substring(1, 2).equals(",")) {
+        } else if (!strMessage.substring(1, 2).equals(",")) {
             Main.question_panel.submitButton.setEnabled(true);
             QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
         }
