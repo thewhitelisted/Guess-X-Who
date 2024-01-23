@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import game.Game;
 import game.Main;
-import game.PickFrame;
+import game.PickPanel;
 import game.QuestionPanel;
 
 /**
@@ -13,7 +13,6 @@ import game.QuestionPanel;
  * A simple server client that allows for communication between two clients<br>
  * Manages all messages sent and received betweeen a server and the clients<br>
  * Allows for the server to act as a client as well
- * <p>
  * 
  * @author Christopher Lee
  * @version 1.0
@@ -70,7 +69,7 @@ final public class SuperSocketListener implements ActionListener {
             // now that player one has picked (client), server picks
             // start from arg 1
             Game.player1 = Game.getCharFromName(args[1]);
-            Main.main_frame.setContentPane(new PickFrame());
+            Main.main_frame.setContentPane(new PickPanel());
             Main.main_frame.pack();
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
             String args[] = strMessage.split(",");
@@ -140,7 +139,7 @@ final public class SuperSocketListener implements ActionListener {
             counter = Integer.parseInt(strMessage.substring(2));
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == START) {
             Main.chat_box.append("[SYS] Game started." + "\n");
-            Main.main_frame.setContentPane(new PickFrame());
+            Main.main_frame.setContentPane(new PickPanel());
             Main.main_frame.pack();
         } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
             Main.question_panel.submitButton.setEnabled(true);

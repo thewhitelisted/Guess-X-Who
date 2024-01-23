@@ -16,20 +16,23 @@ import network.SuperSocketListener;
  * This frame allows the user to pick a character <br>
  * <p>
  * 
+ * @author Christopher Lee
+ * @version 1.0
  * @since 2023-12-09
  */
-final public class PickFrame extends JPanel implements ActionListener{
+final public class PickPanel extends JPanel implements ActionListener{
     JPanel panel;
     JLabel title = new JLabel("Pick a character");
     JButton pick = new JButton("Pick");
     String[] strCharacterQuestions = {"adeline", "aidan", "alex", "andrea", "ariana", "brandon", "caitlyn", "chloe", "donald", "fizan", "jennifer", "jensen", "jeremy", "johnny", "jong", "kimmy", "milly", "nathan", "peter", "poon", "samira", "seamus", "taylor", "thomphson", "xinyan"};
     JComboBox<String> characters = new JComboBox<String>(strCharacterQuestions);
 
-    public PickFrame(){
+    /**
+     * <h1>PickPanel</h1>
+     * Constructor for the PickPanel class<br>
+     */
+    public PickPanel(){
         this.setPreferredSize(new Dimension(1280, 720));
-
-        // set the coordinates of the components
-
         this.add(title);
         this.add(characters);
         this.add(pick);
