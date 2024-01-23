@@ -183,14 +183,14 @@ public class QuestionPanel extends JPanel implements ActionListener{
             infoLabel.setVisible(true);
         } else if (e.getSource() == yesButton) {
             //question answering
-            questionLog.append("You answered yes to " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
-            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem() + "," + "yes");
+            questionLog.append("You answered yes to " + Main.ssl.strquestioninfo[0] + " being " + Main.ssl.strquestioninfo[1] + "\n");
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "yes");
             answerLabel.setVisible(false);
             yesButton.setVisible(false);
             noButton.setVisible(false);
         } else if (e.getSource() == noButton) {
-            questionLog.append("You answered no to " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
-            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem() + "," + "no");
+            questionLog.append("You answered no to " + Main.ssl.strquestioninfo[0] + " being " + Main.ssl.strquestioninfo[1] + "\n");
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "no");
             answerLabel.setVisible(false);
             yesButton.setVisible(false);
             noButton.setVisible(false);
