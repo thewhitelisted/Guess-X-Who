@@ -84,6 +84,7 @@ final public class SuperSocketListener implements ActionListener {
             if (strquestioninfo[0].equals("Character") && !this.blnServer) {
                 // client is player1
                 if (Game.checkGuess(Game.getCharFromName(strquestioninfo[1]), Game.player2)) {
+                    System.out.println("hello");
                     Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
                     Main.chat_box.append("[SYS] Game ended." + "\n");
                     ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly." + "\n");
