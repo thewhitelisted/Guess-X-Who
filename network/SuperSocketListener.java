@@ -152,6 +152,8 @@ final public class SuperSocketListener implements ActionListener {
             QuestionPanel.answerLabel.setVisible(false);
             QuestionPanel.yesButton.setVisible(false);
             QuestionPanel.noButton.setVisible(false);
+            ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssm.getMyAddress());
+            ssm.disconnect();
         }
     }
 
