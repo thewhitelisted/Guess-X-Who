@@ -25,6 +25,7 @@ final public class SuperSocketListener implements ActionListener {
     public boolean blnServer;
     public SuperSocketMaster ssm;
     public int counter = 1;
+    public String[] strquestioninfo = new String[2];
 
     @Override
     public void actionPerformed(ActionEvent e) {
@@ -78,6 +79,8 @@ final public class SuperSocketListener implements ActionListener {
             QuestionPanel.answerLabel.setVisible(true);
             QuestionPanel.yesButton.setVisible(true);
             QuestionPanel.noButton.setVisible(true);
+            strquestioninfo[0] = args[2];
+            strquestioninfo[1] = args[3];
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == ANSWER) {
             String args[] = strMessage.split(",");
             QuestionPanel.questionLog.append("[SYS] User: " + args[1] + " answered " + args[2] + " being " + args[3] + " with " + args[4] + "\n");
