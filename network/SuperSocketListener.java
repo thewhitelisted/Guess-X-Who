@@ -8,6 +8,17 @@ import game.Main;
 import game.PickFrame;
 import game.QuestionPanel;
 
+/**
+ * <h1>SuperSocketListener</h1>
+ * A simple server client that allows for communication between two clients<br>
+ * Manages all messages sent and received betweeen a server and the clients<br>
+ * Allows for the server to act as a client as well
+ * <p>
+ * 
+ * @author Christopher Lee
+ * @version 1.0
+ * @since 2023-12-09
+ */
 final public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
             PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10;
@@ -97,12 +108,21 @@ final public class SuperSocketListener implements ActionListener {
         }
     }
 
+    /**
+     * Create a SuperSocketListener that acts as a client
+     * @param strIP IP address of the server
+     * @param intPort Port of the server
+     */
     public SuperSocketListener(String strIP, int intPort) {
         blnServer = false;
         ssm = new SuperSocketMaster(strIP, intPort, this);
         ssm.connect();
     }
 
+    /**
+     * Create a SuperSocketListener that acts as a server
+     * @param intPort Port of the server
+     */
     public SuperSocketListener(int intPort) {
         blnServer = true;
         ssm = new SuperSocketMaster(intPort, this);
