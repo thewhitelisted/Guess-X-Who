@@ -88,7 +88,7 @@ final public class SuperSocketListener implements ActionListener {
                     System.out.println("test");
                     Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
                     Main.chat_box.append("[SYS] Game ended." + "\n");
-                    ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly.");
+                    ssm.sendText(CHAT + "," + "[SYS] You guessed correctly.");
                     ssm.sendText(CHAT + "," + "[SYS] Game ended.");
                     // disable everything
                     Main.question_panel.submitButton.setEnabled(false);

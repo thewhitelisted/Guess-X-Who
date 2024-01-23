@@ -172,6 +172,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
                     Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
                 }
+                return;
             }
             if (mainQuestion.getSelectedItem() != "Character"){
                 questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
