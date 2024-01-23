@@ -13,8 +13,18 @@ import javax.swing.JTextArea;
 import javax.swing.text.DefaultCaret;
 
 import network.SuperSocketListener;
-
+/**
+ * <h1>QuestionPanel</h1>
+ * Has the code that allows users to ask questions to each other <br>
+ * Questions will change depending on what the user selects <br>
+ * <p>
+ * 
+ * @author Nicholas Poon
+ * @version 1.0
+ * @since 2023-12-09
+ */
 public class QuestionPanel extends JPanel implements ActionListener{
+    //Creates arrays for all possible questions
     String[] strMainQuestions = {"Eye Color", "Hair Color", "Skin Color", "Hair Length", "Expression", "Hat Type", "Glasses Type", "Face Shape", "Gender", "Facial Hair", "Character"};
     String[] strEyeQuestions = {"Brown", "Blue", "Green", "Black"};
     String[] strHairQuestions = {"Black", "Brown", "Blonde"};
@@ -92,6 +102,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        //Subquestion changes depending on what main question is selected
         if (e.getSource() == mainQuestion){
             subQuestion.removeAllItems();
             characterLabel.setVisible(false);
@@ -155,6 +166,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                     break;
             }
         }else if (e.getSource() == submitButton){
+            //Submits the question and sends to the server
             if (mainQuestion.getSelectedItem() == "Character"){
                 if (characterLabel.getText() != "Click on a face"){
                     questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
@@ -170,6 +182,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
             blnInfo = true;
             infoLabel.setVisible(true);
         } else if (e.getSource() == yesButton) {
+            //question answering
             questionLog.append("You answered yes to " + Main.ssl.strquestioninfo[0] + " being " + Main.ssl.strquestioninfo[1] + "\n");
             Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "yes");
             answerLabel.setVisible(false);

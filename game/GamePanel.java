@@ -10,6 +10,17 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+/**
+ * <h1>GamePanel</h1>
+ * This game panel will create the main interactive grid of characters <br>
+ * Contains code to animate card flipping and mouse cursor detection
+ * <p>
+ * 
+ * @author Nicholas Poon
+ * @version 1.0
+ * @since 2023-12-09
+ *
+ */
 
 public class GamePanel extends JPanel implements ActionListener {
     // GamePanel is 720 x 720
@@ -39,15 +50,17 @@ public class GamePanel extends JPanel implements ActionListener {
     public int x;
     public int y;
 
+    //Getter method
     public Character[] getCharacters() {
         return characters;
     }
    
-    
+    //Starts the timer for the card animation
     public void startCardFlip(int index){
             timer.start();
     }
 
+    //Creates the grid of face cards
     public void paintComponent(Graphics g) {
         
         g.setColor(Color.WHITE);
@@ -83,6 +96,7 @@ public class GamePanel extends JPanel implements ActionListener {
         intYPos = 20;
     }
 
+    //Animating the card flipping
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {
