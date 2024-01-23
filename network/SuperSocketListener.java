@@ -94,6 +94,9 @@ final public class SuperSocketListener implements ActionListener {
                     Main.question_panel.submitButton.setEnabled(false);
                     Main.question_panel.mainQuestion.setEnabled(false);
                     Main.question_panel.subQuestion.setEnabled(false);
+                    QuestionPanel.answerLabel.setVisible(false);
+                    QuestionPanel.yesButton.setVisible(false);
+                    QuestionPanel.noButton.setVisible(false);
                     ssm.sendText(END + "");
                 }
             }
@@ -128,6 +131,9 @@ final public class SuperSocketListener implements ActionListener {
             Main.question_panel.submitButton.setEnabled(false);
             Main.question_panel.mainQuestion.setEnabled(false);
             Main.question_panel.subQuestion.setEnabled(false);
+            QuestionPanel.answerLabel.setVisible(false);
+            QuestionPanel.yesButton.setVisible(false);
+            QuestionPanel.noButton.setVisible(false);
         }
     }
 
