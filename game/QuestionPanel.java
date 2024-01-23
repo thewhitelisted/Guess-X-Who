@@ -72,6 +72,8 @@ public class QuestionPanel extends JPanel implements ActionListener{
         infoButton.addActionListener(this);
         submitButton.addActionListener(this);
         mainQuestion.addActionListener(this);
+        yesButton.addActionListener(this);
+        noButton.addActionListener(this);
         this.add(questionScroll);
         this.add(mainQuestion);
         this.add(subQuestion);
@@ -163,9 +165,22 @@ public class QuestionPanel extends JPanel implements ActionListener{
                 questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
                 Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
             }
-        }else if (e.getSource() == infoButton){
+            submitButton.setEnabled(false);
+        } else if (e.getSource() == infoButton){
             blnInfo = true;
             infoLabel.setVisible(true);
+        } else if (e.getSource() == yesButton) {
+            questionLog.append("You answered yes to " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem() + "," + "yes");
+            answerLabel.setVisible(false);
+            yesButton.setVisible(false);
+            noButton.setVisible(false);
+        } else if (e.getSource() == noButton) {
+            questionLog.append("You answered no to " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem() + "," + "no");
+            answerLabel.setVisible(false);
+            yesButton.setVisible(false);
+            noButton.setVisible(false);
         }
     }
 }

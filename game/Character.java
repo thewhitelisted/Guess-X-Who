@@ -122,7 +122,7 @@ public class Character {
         try {
             while ((line = br.readLine()) != null) {
                 character = line.split(",");
-                System.out.println(line);
+                
                 String name = character[0];
                 BufferedImage icon = null;
                 try {

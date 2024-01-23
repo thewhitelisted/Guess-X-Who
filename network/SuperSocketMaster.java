@@ -226,7 +226,6 @@ public class SuperSocketMaster {
 
     public void actionPerformed(ActionEvent evt) {
       if (evt.getSource() == theTimer) {
-        // System.out.println("Heartbeat");
         this.sendText("Heartbeat");
       }
     }

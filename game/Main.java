@@ -205,8 +205,6 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
             question_panel.subQuestion.setVisible(false);
             question_panel.characterLabel.setVisible(true);
             question_panel.characterLabel.setText(Game.guessClick(e));
-            System.out.println(Game.guessClick(e));
-            System.out.println(question_panel.characterLabel.getText());
         }else{
             Game.cardClick(e); 
         }
@@ -243,28 +241,12 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         
     }
     
-    private int angle = 0;
-    // private void cardAnimation(ActionEvent e, int index,int row, int column){
-    //     if(e.getSource () == theTimer){
-    //         if(index==-1){
-    //             angle +=10;
-    //         } 
-    //         if(angle >=180){
-    //             characters[index].setFlipped(!characters[index].isFlipped());
-    //             game_panel.repaint();
-    //             index=-1;
-    //         } else {
-    //             characters[index].setRotationAngle(angle);
-    //             game_panel.repaint();
-    //         }
-    //     }
-    // }
     public Main() {
         main_panel.setPreferredSize(new Dimension(1280, 720));
         main_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         main_frame.addWindowListener(this);
         main_frame.setContentPane(main_panel);
-        main_panel.setLayout(new BoxLayout(this.main_panel, BoxLayout.X_AXIS));
+        main_panel.setLayout(new BoxLayout(main_panel, BoxLayout.X_AXIS));
 
         connect_panel.setPreferredSize(new Dimension(1280, 720));
         connect_panel.setLayout(null);
