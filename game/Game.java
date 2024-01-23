@@ -21,7 +21,7 @@ public class Game {
 
     public static boolean checkGuess(Character guess, Character answer) {
         //returns player's guess and checks if it is the right character
-        return guess.equals(answer);
+        return guess.strName.equals(answer.strName);
     }
     public static int index;
 
