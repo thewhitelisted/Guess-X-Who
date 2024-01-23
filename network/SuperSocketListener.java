@@ -98,7 +98,25 @@ final public class SuperSocketListener implements ActionListener {
                     QuestionPanel.yesButton.setVisible(false);
                     QuestionPanel.noButton.setVisible(false);
                     ssm.sendText(END + "");
-                }
+                } 
+            } else if (strquestioninfo[0].equals("Character") && this.blnServer) {
+                // client is player1
+                System.out.println(strquestioninfo[1] + " " + Game.player2.strName);
+                if (Game.checkGuess(Game.getCharFromName(strquestioninfo[1]), Game.player1)) {
+                    System.out.println("test");
+                    Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
+                    Main.chat_box.append("[SYS] Game ended." + "\n");
+                    ssm.sendText(CHAT + "," + "[SYS] You guessed correctly.");
+                    ssm.sendText(CHAT + "," + "[SYS] Game ended.");
+                    // disable everything
+                    Main.question_panel.submitButton.setEnabled(false);
+                    Main.question_panel.mainQuestion.setEnabled(false);
+                    Main.question_panel.subQuestion.setEnabled(false);
+                    QuestionPanel.answerLabel.setVisible(false);
+                    QuestionPanel.yesButton.setVisible(false);
+                    QuestionPanel.noButton.setVisible(false);
+                    ssm.sendText(END + "");
+                } 
             }
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == ANSWER) {
             String args[] = strMessage.split(",");
