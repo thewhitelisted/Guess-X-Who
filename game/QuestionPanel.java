@@ -171,6 +171,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
                 if (characterLabel.getText() != "Click on a face"){
                     questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
                     Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+                    submitButton.setEnabled(false);
                 }
                 return;
             }
