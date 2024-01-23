@@ -35,7 +35,7 @@ final public class SuperSocketListener implements ActionListener {
         }
         String strMessage = ssm.readText();
         // on the off chance that the message is null, return
-        if (strMessage == null) {
+        if (strMessage == "") {
             return;
         }
 
@@ -88,8 +88,8 @@ final public class SuperSocketListener implements ActionListener {
                     System.out.println("test");
                     Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
                     Main.chat_box.append("[SYS] Game ended." + "\n");
-                    ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly." + "\n");
-                    ssm.sendText(CHAT + "," + "[SYS] Game ended." + "\n");
+                    ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly.");
+                    ssm.sendText(CHAT + "," + "[SYS] Game ended.");
                 }
             }
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == ANSWER) {
