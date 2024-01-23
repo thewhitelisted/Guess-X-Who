@@ -7,7 +7,7 @@ public class Game {
     public static Character player2;
 
     public static boolean checkGuess(Character guess, Character answer) {
-        return guess == answer;
+        return guess.equals(answer);
     }
     public static int index;
 
