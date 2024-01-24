@@ -26,7 +26,7 @@ import javax.swing.JPanel;
 public class HelpPanel extends JPanel implements MouseListener, MouseMotionListener, ActionListener{
 
     GamePanel help_game_panel = new GamePanel();
-    QuestionPanel help_question_panel = new QuestionPanel();
+    HelpQuestionPanel help_question_panel = new HelpQuestionPanel();
     JPanel textPanel1 = new JPanel();
     JPanel textPanel2 = new JPanel();
 
