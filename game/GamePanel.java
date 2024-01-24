@@ -10,6 +10,7 @@ import java.io.IOException;
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
+
 /**
  * <h1>GamePanel</h1>
  * This game panel will create the main interactive grid of characters <br>
@@ -29,7 +30,7 @@ public class GamePanel extends JPanel implements ActionListener {
     int intYPos = 20;
     int intMouseX = 300;
     int intMouseY = 300;
-    Timer timer = new Timer(1000 / 24, this);
+    Timer timer = new Timer(1000 / 60, this);
     public BufferedImage backside = null;
     public BufferedImage redcard = null;
     public BufferedImage backside1 = null;
@@ -50,19 +51,19 @@ public class GamePanel extends JPanel implements ActionListener {
     public int x;
     public int y;
 
-    //Getter method
+    // Getter method
     public Character[] getCharacters() {
         return characters;
     }
-   
-    //Starts the timer for the card animation
-    public void startCardFlip(int index){
-            timer.start();
+
+    // Starts the timer for the card animation
+    public void startCardFlip(int index) {
+        timer.start();
     }
 
-    //Creates the grid of face cards
+    // Creates the grid of face cards
     public void paintComponent(Graphics g) {
-        
+
         g.setColor(Color.WHITE);
         g.fillRect(0, 0, 720, 720);
         for (x = 0; x < 5; x++) {
@@ -70,24 +71,24 @@ public class GamePanel extends JPanel implements ActionListener {
             for (y = 0; y < 5; y++) {
 
                 g.fillRect(intXPos, intYPos, 120, 120);
-                if (characters[y*5+x] == null) {
+                if (characters[y * 5 + x] == null) {
                     break;
                 }
 
-                if (characters[y*5+x].flipping) {
+                if (characters[y * 5 + x].flipping) {
                     g.drawImage(cardBackFrames[intAnimationFrame], intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
 
-                if (characters[y*5+x].isFlipped) {
+                if (characters[y * 5 + x].isFlipped) {
                     g.drawImage(backside, intXPos, intYPos, null);
                     intYPos += 140;
                     continue;
                 }
-                g.drawImage(characters[y*5+x].imgIcon, intXPos, intYPos, null);
+                g.drawImage(characters[y * 5 + x].imgIcon, intXPos, intYPos, null);
                 g.setColor(Color.WHITE);
-                g.drawString(characters[y*5+x].strName, intXPos + 5, intYPos + 10);
+                g.drawString(characters[y * 5 + x].strName, intXPos + 5, intYPos + 10);
                 intYPos += 140;
             }
             intXPos += 140;
@@ -96,7 +97,7 @@ public class GamePanel extends JPanel implements ActionListener {
         intYPos = 20;
     }
 
-    //Animating the card flipping
+    // Animating the card flipping
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == timer) {

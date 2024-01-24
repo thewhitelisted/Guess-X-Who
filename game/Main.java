@@ -43,7 +43,6 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     public static JFrame main_frame = new JFrame("Guess X Who");
     public static JPanel main_panel = new JPanel();
 
-    Timer theTimer = new Timer(1000 / 48, this);
     // connect and create frames
     private JPanel connect_panel = new JPanel();
     private JPanel create_panel = new JPanel();
