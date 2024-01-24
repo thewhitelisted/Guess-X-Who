@@ -42,12 +42,26 @@ public class Game {
             Main.game_panel.repaint();
             return;
         }
+        if(Main.help_panel.help_game_panel.characters[index].isFlipped()) {
+            Main.help_panel.help_game_panel.characters[index].setFlipped(false);
+            Main.help_panel.help_game_panel.repaint();
+            return;
+        }
         // Otherwise when it is clicked, it sets flipping to be true and starts the
         // timer for the animation
-        Main.game_panel.characters[index].flipping = true;
-        Main.game_panel.startCardFlip(index);
-        Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
-        Main.game_panel.repaint();
+        if (Main.main_frame.getContentPane() == Main.main_panel){
+            Main.game_panel.characters[index].flipping = true;
+            Main.game_panel.startCardFlip(index);
+            Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
+            Main.game_panel.repaint();
+        }else if (Main.main_frame.getContentPane() == Main.help_panel){
+            Main.help_panel.help_game_panel.characters[index].flipping = true;
+            Main.help_panel.help_game_panel.startCardFlip(index);
+            Main.help_panel.help_game_panel.characters[index].setFlipped(!Main.help_panel.help_game_panel.characters[index].isFlipped());
+            Main.help_panel.help_game_panel.repaint();
+        }
+        
+        
     }
 
     // Used to return the character name when the player clicks on a face to guess

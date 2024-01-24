@@ -20,7 +20,6 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
-import javax.swing.Timer;
 import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.text.DefaultCaret;
@@ -60,8 +59,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JButton create_button = new JButton("Create");
     
     // help panel
-    private HelpPanel help_panel = new HelpPanel();
-    private GamePanel help_game_panel = new GamePanel();
+    public static HelpPanel help_panel = new HelpPanel();
 
     // game panel will contain the game board, and the character cards
     public static GamePanel game_panel = new GamePanel();
@@ -344,15 +342,6 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         help_panel.setPreferredSize(new Dimension(1280, 720));
         help_panel.setLayout(null);
         help_panel.setLayout(new BoxLayout(help_panel, BoxLayout.X_AXIS));
-
-        help_panel.add(help_game_panel);
-
-        help_game_panel.setBounds(0, 0, 720, 720);
-        help_game_panel.setPreferredSize(new Dimension(720,720));
-        help_game_panel.setLayout(null);
-
-        help_game_panel.addMouseListener(this);
-        help_game_panel.addMouseMotionListener(this);
 
         chat_scroll.setBounds(0, 0, 560, 325);
         chat_box.setEditable(false);
