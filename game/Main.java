@@ -37,7 +37,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JPanel connect_panel = new JPanel();
     private JPanel create_panel = new JPanel();
 
-    public static PickFrame pick_frame = new PickFrame();
+    public static PickPanel pick_frame = new PickPanel();
 
     // connect and create panel components
     private JLabel connect_ip_label = new JLabel("IP Address");

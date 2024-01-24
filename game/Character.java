@@ -9,11 +9,25 @@ import java.io.IOException;
 
 import javax.imageio.ImageIO;
 
+/** 
+ * <h1>Character</h1>
+ * A character class that stores all the information about a character<br>
+ * Contains code to import character data from a csv file<br>
+ * <p>
+ * 
+ * @author Christopher Lee
+ * @version 1.0
+ * @since 2023-12-09
+ */
 public class Character {
     // file format: name, file, skin colour, hair colour, eye colour,
     // hair length, expression, hat type, glasses type, face type,
     // gender facial hair
 
+    /**
+     * <h1>EyeColour</h1>
+     * An enum that stores all the possible eye colours<br>
+     */
     public enum EyeColour {
         BLACK,
         BROWN,
@@ -21,6 +35,10 @@ public class Character {
         GREEN,
     }
 
+    /**
+     * <h1>HairColour</h1>
+     * An enum that stores all the possible hair colours<br>
+     */
     public enum HairColour {
         BALD,
         BLACK,
@@ -28,18 +46,30 @@ public class Character {
         BLONDE
     }
 
+    /**
+     * <h1>SkinColour</h1>
+     * An enum that stores all the possible skin colours<br>
+     */
     public enum SkinColour {
         WHITE,
         BLACK,
         BROWN
     }
 
+    /**
+     * <h1>HairLength</h1>
+     * An enum that stores all the possible hair lengths<br>
+     */
     public enum HairLength {
         BALD,
         SHORT,
         LONG,
     }
 
+    /**
+     * <h1>Expression</h1>
+     * An enum that stores all the possible expressions<br>
+     */
     public enum Expression {
         HAPPY,
         SAD,
@@ -47,18 +77,30 @@ public class Character {
         NEUTRAL,
     }
 
+    /**
+     * <h1>HatType</h1>
+     * An enum that stores all the possible hat types<br>
+     */
     public enum HatType {
         NONE,
         CAP,
         TOPHAT,
     }
 
+    /**
+     * <h1>GlassesType</h1>
+     * An enum that stores all the possible glasses types<br>
+     */
     public enum GlassesType {
         NONE,
         GLASSES,
         SUNGLASSES,
     }
 
+    /**
+     * <h1>FaceType</h1>
+     * An enum that stores all the possible face types<br>
+     */
     public enum FaceType {
         CIRCLE,
         SQUARE,
@@ -66,11 +108,19 @@ public class Character {
         OVAL,
     }
 
+    /**
+     * <h1>Gender</h1>
+     * An enum that stores all possible genders<br>
+     */
     public enum Gender {
         MALE,
         FEMALE,
     }
 
+    /**
+     * <h1>FacialHair</h1>
+     * An enum that stores all possible facial hair types<br>
+     */
     public enum FacialHair {
         NONE,
         MOUSTACHE,
@@ -78,13 +128,6 @@ public class Character {
     }
 
     // Character defining attributes
-    public int RotationAngle = 0;
-    public int getRotationAngle(){
-        return RotationAngle;
-    }
-    public void setRotationAngle(int RotationAngle){
-        this.RotationAngle = RotationAngle;
-    }
     public String strName;
     public BufferedImage imgIcon;
     public HairColour hairColour;
@@ -101,12 +144,29 @@ public class Character {
     public boolean isFlipped = false;
     public boolean flipping = false;
     
+    /**
+     * <h1>isFlipped</h1>
+     * Checks if the card is flipped or not<br>
+     * @return flip state of the card<br>
+     */
     public boolean isFlipped(){
         return isFlipped;
     }
+
+    /**
+     * <h1>setFlipped</h1>
+     * Sets the flip state of the card<br>
+     * @param flipped
+     */
     public void setFlipped(boolean flipped){
         isFlipped = flipped;
     }
+
+    /**
+     * <h1>importCharacters</h1>
+     * Imports all the characters from a csv file<br>
+     * @return an array of characters<br>
+     */
     public static Character[] importCharacters() {
         BufferedReader br = null;
         try {
@@ -149,7 +209,22 @@ public class Character {
         return characters;
     }
 
-    // Character constructor
+    /**
+     * <h1>Character</h1>
+     * Constructor for the character class<br>
+     * @param name
+     * @param imgIcon
+     * @param hairColour
+     * @param eyeColour
+     * @param hatType
+     * @param glassesType
+     * @param facialHair
+     * @param skinColour
+     * @param hairLength
+     * @param expression
+     * @param faceType
+     * @param gender
+     */
     public Character(String name, BufferedImage imgIcon, HairColour hairColour, EyeColour eyeColour, HatType hatType,
             GlassesType glassesType, FacialHair facialHair, SkinColour skinColour, HairLength hairLength,
             Expression expression, FaceType faceType, Gender gender) {

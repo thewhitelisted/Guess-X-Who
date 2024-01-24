@@ -5,7 +5,7 @@ import java.awt.event.ActionListener;
 
 import game.Game;
 import game.Main;
-import game.PickFrame;
+import game.PickPanel;
 import game.QuestionPanel;
 
 /**
@@ -13,7 +13,6 @@ import game.QuestionPanel;
  * A simple server client that allows for communication between two clients<br>
  * Manages all messages sent and received betweeen a server and the clients<br>
  * Allows for the server to act as a client as well
- * <p>
  * 
  * @author Christopher Lee
  * @version 1.0
@@ -21,7 +20,7 @@ import game.QuestionPanel;
  */
 final public class SuperSocketListener implements ActionListener {
     public static final int CONNECT = 0, DISCONNECT = 1, PICK = 2, QUESTION = 3, ANSWER = 4, CHAT = 5, ERROR = 6,
-            PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10;
+            PLAYERSREQ = 7, PLAYERS = 8, START = 9, TURN = 10, END = 11;
     public boolean blnServer;
     public SuperSocketMaster ssm;
     public int counter = 1;
@@ -35,7 +34,7 @@ final public class SuperSocketListener implements ActionListener {
         }
         String strMessage = ssm.readText();
         // on the off chance that the message is null, return
-        if (strMessage == null) {
+        if (strMessage == "") {
             return;
         }
 
@@ -70,7 +69,7 @@ final public class SuperSocketListener implements ActionListener {
             // now that player one has picked (client), server picks
             // start from arg 1
             Game.player1 = Game.getCharFromName(args[1]);
-            Main.main_frame.setContentPane(new PickFrame());
+            Main.main_frame.setContentPane(new PickPanel());
             Main.main_frame.pack();
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == QUESTION) {
             String args[] = strMessage.split(",");
@@ -83,12 +82,40 @@ final public class SuperSocketListener implements ActionListener {
             strquestioninfo[1] = args[3];
             if (strquestioninfo[0].equals("Character") && !this.blnServer) {
                 // client is player1
+                System.out.println(strquestioninfo[1] + " " + Game.player1.strName);
                 if (Game.checkGuess(Game.getCharFromName(strquestioninfo[1]), Game.player2)) {
+                    System.out.println("test");
                     Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
                     Main.chat_box.append("[SYS] Game ended." + "\n");
-                    ssm.sendText(CHAT + "," + "[SYS] User: " + args[1] + " guessed correctly." + "\n");
-                    ssm.sendText(CHAT + "," + "[SYS] Game ended." + "\n");
-                }
+                    ssm.sendText(CHAT + "," + "[SYS] You guessed correctly.");
+                    ssm.sendText(CHAT + "," + "[SYS] Game ended.");
+                    // disable everything
+                    Main.question_panel.submitButton.setEnabled(false);
+                    Main.question_panel.mainQuestion.setEnabled(false);
+                    Main.question_panel.subQuestion.setEnabled(false);
+                    QuestionPanel.answerLabel.setVisible(false);
+                    QuestionPanel.yesButton.setVisible(false);
+                    QuestionPanel.noButton.setVisible(false);
+                    ssm.sendText(END + "");
+                } 
+            } else if (strquestioninfo[0].equals("Character") && this.blnServer) {
+                // client is player1
+                System.out.println(strquestioninfo[1] + " " + Game.player2.strName);
+                if (Game.checkGuess(Game.getCharFromName(strquestioninfo[1]), Game.player1)) {
+                    System.out.println("test");
+                    Main.chat_box.append("[SYS] User: " + args[1] + " guessed correctly." + "\n");
+                    Main.chat_box.append("[SYS] Game ended." + "\n");
+                    ssm.sendText(CHAT + "," + "[SYS] You guessed correctly.");
+                    ssm.sendText(CHAT + "," + "[SYS] Game ended.");
+                    // disable everything
+                    Main.question_panel.submitButton.setEnabled(false);
+                    Main.question_panel.mainQuestion.setEnabled(false);
+                    Main.question_panel.subQuestion.setEnabled(false);
+                    QuestionPanel.answerLabel.setVisible(false);
+                    QuestionPanel.yesButton.setVisible(false);
+                    QuestionPanel.noButton.setVisible(false);
+                    ssm.sendText(END + "");
+                } 
             }
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == ANSWER) {
             String args[] = strMessage.split(",");
@@ -112,11 +139,20 @@ final public class SuperSocketListener implements ActionListener {
             counter = Integer.parseInt(strMessage.substring(2));
         } else if (Integer.parseInt(strMessage.substring(0, 1)) == START) {
             Main.chat_box.append("[SYS] Game started." + "\n");
-            Main.main_frame.setContentPane(new PickFrame());
+            Main.main_frame.setContentPane(new PickPanel());
             Main.main_frame.pack();
-        } else if (!strMessage.substring(1, 2).equals(",")) {
+        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("0")) {
             Main.question_panel.submitButton.setEnabled(true);
             QuestionPanel.questionLog.append("[SYS] It is your turn.\n");
+        } else if (!strMessage.substring(1, 2).equals(",") && strMessage.substring(1,2).equals("1")) {
+            Main.question_panel.submitButton.setEnabled(false);
+            Main.question_panel.mainQuestion.setEnabled(false);
+            Main.question_panel.subQuestion.setEnabled(false);
+            QuestionPanel.answerLabel.setVisible(false);
+            QuestionPanel.yesButton.setVisible(false);
+            QuestionPanel.noButton.setVisible(false);
+            ssm.sendText(SuperSocketListener.DISCONNECT + "," + ssm.getMyAddress());
+            ssm.disconnect();
         }
     }
 
