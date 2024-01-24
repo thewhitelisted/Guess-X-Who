@@ -58,6 +58,10 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JTextField create_port = new JTextField(50);
     private JButton connect_button = new JButton("Connect");
     private JButton create_button = new JButton("Create");
+    
+    // help panel
+    private HelpPanel help_panel = new HelpPanel();
+    private GamePanel help_game_panel = new GamePanel();
 
     // game panel will contain the game board, and the character cards
     public static GamePanel game_panel = new GamePanel();
@@ -75,6 +79,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     private JMenuBar menu_bar = new JMenuBar();
     private JMenu menu = new JMenu("Game");
     private JMenu home = new JMenu("Home");
+    private JMenu help = new JMenu("Help");
     private JMenuItem create_game = new JMenuItem("Create Game");
     private JMenuItem join_game = new JMenuItem("Join Game");
     private JMenuItem exit_game = new JMenuItem("Exit Game");
@@ -239,7 +244,13 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
     @Override
     public void menuSelected(MenuEvent e) {
-        main_frame.setContentPane(main_panel);
+        if (e.getSource() == home){
+            main_frame.setContentPane(main_panel);
+            main_frame.pack();
+        }else if (e.getSource() == help){
+            main_frame.setContentPane(help_panel);
+            main_frame.pack();
+        }
     }
 
     @Override
@@ -296,6 +307,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         menu.add(exit_game);
         menu_bar.add(menu);
         menu_bar.add(home);
+        menu_bar.add(help);
         main_frame.setJMenuBar(menu_bar);
 
         create_game.addActionListener(this);
@@ -305,6 +317,7 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
         create_button.addActionListener(this);
 
         home.addMenuListener(this);
+        help.addMenuListener(this);
 
         main_panel.setBounds(0, 0, 1280, 720);
         main_panel.setLayout(null);
@@ -326,6 +339,20 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
         question_panel.setBounds(720, 0, 560, 360);
         question_panel.setPreferredSize(new Dimension(560, 360));
+
+        help_panel.setBounds(0, 0, 1280, 720);
+        help_panel.setPreferredSize(new Dimension(1280, 720));
+        help_panel.setLayout(null);
+        help_panel.setLayout(new BoxLayout(help_panel, BoxLayout.X_AXIS));
+
+        help_panel.add(help_game_panel);
+
+        help_game_panel.setBounds(0, 0, 720, 720);
+        help_game_panel.setPreferredSize(new Dimension(720,720));
+        help_game_panel.setLayout(null);
+
+        help_game_panel.addMouseListener(this);
+        help_game_panel.addMouseMotionListener(this);
 
         chat_scroll.setBounds(0, 0, 560, 325);
         chat_box.setEditable(false);
