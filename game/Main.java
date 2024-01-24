@@ -25,14 +25,25 @@ import javax.swing.event.MenuEvent;
 import javax.swing.event.MenuListener;
 import javax.swing.text.DefaultCaret;
 
-
 import network.SuperSocketListener;
 
+/**
+ * <h1>Main</h1>
+ * This is the main class that runs the game<br>
+ * Contains code to create the main frame and panels
+ * <p>
+ * 
+ * @author Christopher Lee
+ * @author Nicholas Poon
+ * @author Addision Wong
+ * @version 1.0
+ * @since 2023-12-09
+ */
 public class Main implements ActionListener, WindowListener, MouseListener, MouseMotionListener, MenuListener {
     public static JFrame main_frame = new JFrame("Guess X Who");
     public static JPanel main_panel = new JPanel();
-    
-    Timer theTimer = new Timer(1000/48, this);
+
+    Timer theTimer = new Timer(1000 / 48, this);
     // connect and create frames
     private JPanel connect_panel = new JPanel();
     private JPanel create_panel = new JPanel();
@@ -154,76 +165,77 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
     public void windowDeactivated(WindowEvent e) {
     }
 
-    //Mouse Listener & MouseMotionListener
+    // Mouse Listener & MouseMotionListener
     @Override
-    public void mouseExited(MouseEvent e){
+    public void mouseExited(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseEntered(MouseEvent e){
+    public void mouseEntered(MouseEvent e) {
 
     }
 
     @Override
-    public void mouseReleased(MouseEvent e){
+    public void mouseReleased(MouseEvent e) {
 
-	}
+    }
 
     @Override
-	public void mouseClicked(MouseEvent e){
+    public void mouseClicked(MouseEvent e) {
         if (question_panel.blnInfo == true) {
-            for (int count = 0; count <= 10; count++){
-                //Name, Hair Colour, Eye Colour, Hat, Glasses, Facial, Skin, Hair Length, Expression, Face, Gender
-                if (count == 0){
+            for (int count = 0; count <= 10; count++) {
+                // Name, Hair Colour, Eye Colour, Hat, Glasses, Facial, Skin, Hair Length,
+                // Expression, Face, Gender
+                if (count == 0) {
                     QuestionPanel.questionLog.append("Name: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 1){
+                } else if (count == 1) {
                     QuestionPanel.questionLog.append("Hair Colour: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 2){
+                } else if (count == 2) {
                     QuestionPanel.questionLog.append("Eye Colour: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 3){
+                } else if (count == 3) {
                     QuestionPanel.questionLog.append("Hat Type: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 4){
+                } else if (count == 4) {
                     QuestionPanel.questionLog.append("Glasses Type: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 5){
+                } else if (count == 5) {
                     QuestionPanel.questionLog.append("Facial Hair: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 6){
+                } else if (count == 6) {
                     QuestionPanel.questionLog.append("Skin Colour: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 7){
+                } else if (count == 7) {
                     QuestionPanel.questionLog.append("Hair Length: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 8){
+                } else if (count == 8) {
                     QuestionPanel.questionLog.append("Expression: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 9){
+                } else if (count == 9) {
                     QuestionPanel.questionLog.append("Face Shape: " + Game.infoClick(e)[count] + "\n");
-                }else if (count == 10){
+                } else if (count == 10) {
                     QuestionPanel.questionLog.append("Gender: " + Game.infoClick(e)[count] + "\n");
                 }
             }
             QuestionPanel.questionLog.append("\n");
             question_panel.blnInfo = false;
-        }else if(question_panel.mainQuestion.getSelectedItem() == "Character"){
+        } else if (question_panel.mainQuestion.getSelectedItem() == "Character") {
             question_panel.subQuestion.setVisible(false);
             question_panel.characterLabel.setVisible(true);
             question_panel.characterLabel.setText(Game.guessClick(e));
-        }else{
-            Game.cardClick(e); 
+        } else {
+            Game.cardClick(e);
         }
-     
-	}
-
-    @Override
-	public void mousePressed(MouseEvent e){
-	
-    }
-	
-    @Override
-	public void mouseMoved(MouseEvent e){
 
     }
 
     @Override
-	public void mouseDragged(MouseEvent e){
-	
+    public void mousePressed(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseMoved(MouseEvent e) {
+
+    }
+
+    @Override
+    public void mouseDragged(MouseEvent e) {
+
     }
 
     @Override
@@ -233,14 +245,20 @@ public class Main implements ActionListener, WindowListener, MouseListener, Mous
 
     @Override
     public void menuDeselected(MenuEvent e) {
-        
+
     }
 
     @Override
     public void menuCanceled(MenuEvent e) {
-        
+
     }
-    
+
+    /**
+     * <h1>Main</h1>
+     * Constructor for the Main class<br>
+     * Creates the main frame and panels
+     * <p>
+     */
     public Main() {
         main_panel.setPreferredSize(new Dimension(1280, 720));
         main_frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
