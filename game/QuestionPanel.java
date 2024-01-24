@@ -55,7 +55,7 @@ public class QuestionPanel extends JPanel implements ActionListener{
 
     boolean blnInfo = false;
 
-    QuestionPanel(){
+    public QuestionPanel(){
         this.setLayout(null);
         this.setPreferredSize(new Dimension(560, 360));
 
@@ -171,13 +171,15 @@ public class QuestionPanel extends JPanel implements ActionListener{
                 if (characterLabel.getText() != "Click on a face"){
                     questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + characterLabel.getText() + "\n");
                     Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
+                    System.out.println(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + characterLabel.getText());
                     submitButton.setEnabled(false);
                 }
+                System.out.println("Count of submit listeners: " + ((JButton) e.getSource()).getActionListeners().length);
                 return;
-            }
-            if (mainQuestion.getSelectedItem() != "Character"){
+            }else if (mainQuestion.getSelectedItem() != "Character"){
                 questionLog.append("You asked about " + mainQuestion.getSelectedItem() + " being " + subQuestion.getSelectedItem() + "\n");
                 Main.ssl.ssm.sendText(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
+                System.out.println(SuperSocketListener.QUESTION + "," + Main.ssl.ssm.getMyAddress() + "," + mainQuestion.getSelectedItem() + "," + subQuestion.getSelectedItem());
             }
             submitButton.setEnabled(false);
         } else if (e.getSource() == infoButton){
@@ -186,16 +188,22 @@ public class QuestionPanel extends JPanel implements ActionListener{
         } else if (e.getSource() == yesButton) {
             //question answering
             questionLog.append("You answered yes to " + Main.ssl.strquestioninfo[0] + " being " + Main.ssl.strquestioninfo[1] + "\n");
-            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "yes");
             answerLabel.setVisible(false);
             yesButton.setVisible(false);
             noButton.setVisible(false);
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "yes");
+            System.out.println(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "yes");
+            System.out.println("Count of yes listeners: " + ((JButton) e.getSource()).getActionListeners().length);
+            
         } else if (e.getSource() == noButton) {
             questionLog.append("You answered no to " + Main.ssl.strquestioninfo[0] + " being " + Main.ssl.strquestioninfo[1] + "\n");
-            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "no");
             answerLabel.setVisible(false);
             yesButton.setVisible(false);
             noButton.setVisible(false);
+            Main.ssl.ssm.sendText(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "no");
+            System.out.println(SuperSocketListener.ANSWER + "," + Main.ssl.ssm.getMyAddress() + "," + Main.ssl.strquestioninfo[0] + "," + Main.ssl.strquestioninfo[1] + "," + "no");
+            System.out.println("Count of no listeners: " + ((JButton) e.getSource()).getActionListeners().length);
+            
         }
     }
 }
