@@ -2,7 +2,7 @@ package game;
 
 import java.awt.event.MouseEvent;
 
-/*
+/**
  * <h1>Game</h1>
  * Game.java is the logic for when you click a card and returns character data from the character csv file<br>
  * Contains code to start the timer for card flipping animation, or click a card for guessing the character,<br>
