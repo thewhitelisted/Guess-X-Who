@@ -25,6 +25,7 @@ public class Game {
     }
     public static int index;
 
+    //Used for starting the flip card animation when you click on a card
     public static void cardClick(MouseEvent e) {
         //Finds index of card based on what card players have clicked
         int MouseX = e.getX();
@@ -45,46 +46,45 @@ public class Game {
         Main.game_panel.repaint();
     }
 
+    //Used to return the character name when the player clicks on a face to guess
     public static String guessClick(MouseEvent e) {
+        //Finds index of card based on what card players have clicked
         int MouseX = e.getX();
         int MouseY = e.getY();
         int column = (MouseX - 20) / 140;
         int row = (MouseY - 20) / 140;
         int index = row * 5 + column;
+        //When you click on a card, return the name of the character that you clicked on
         if (index >= 0 && index < Main.game_panel.characters.length && Main.game_panel.characters[index] != null) {
-            // Flip the card with animation
             return Main.game_panel.characters[index].strName;
-            // Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
-            // Main.game_panel.repaint();
         } else {
             return null;
         }
     }
 
     public static String[] infoClick(MouseEvent e) {
+        //Finds index of card based on what card players have clicked
         int MouseX = e.getX();
         int MouseY = e.getY();
         int column = (MouseX - 20) / 140;
         int row = (MouseY - 20) / 140;
         int index = row * 5 + column;
+        //When you click on a card, return the data based on the 10 features of the character that you clicked on
         if (index >= 0 && index < Main.game_panel.characters.length && Main.game_panel.characters[index] != null) {
-            // Flip the card with animation
             Main.question_panel.infoLabel.setVisible(false);
             return returnCharacterData(Main.game_panel.characters[index]);
-            // Main.game_panel.characters[index].setFlipped(!Main.game_panel.characters[index].isFlipped());
-            // Main.game_panel.repaint();
         } else {
             return null;
         }
     }
-
+    //Converts the data from character.java to return the data as a string
     public static String[] returnCharacterData(Character character) {
         return new String[] { character.strName, character.hairColour.toString(), character.eyeColour.toString(),
                 character.hatType.toString(), character.glassesType.toString(), character.facialHair.toString(),
                 character.skinColour.toString(), character.hairLength.toString(), character.expression.toString(),
                 character.faceType.toString(), character.gender.toString() };
     }
-
+   //Returns character from the the character.strName
     public static Character getCharFromName(String name) {
         for (Character character : Main.game_panel.characters) {
             if (character.strName.equals(name)) {
