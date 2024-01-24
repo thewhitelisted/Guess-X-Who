@@ -2,6 +2,15 @@ package game;
 
 import java.awt.event.ActionEvent;
 
+/**
+ * <h1>Help Question Panel</h1>
+ * additional question panel used for the help screen to prevent bugs <br>
+ * only has code to change the comboboxes. Buttons do not do anything
+ * 
+ * @author Nicholas Poon
+ * @version 1.0
+ * @since 2023-12-09
+ */
 public class HelpQuestionPanel extends QuestionPanel{
     
     public HelpQuestionPanel(){

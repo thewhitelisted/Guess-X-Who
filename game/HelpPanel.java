@@ -25,6 +25,7 @@ import javax.swing.JPanel;
  */
 public class HelpPanel extends JPanel implements MouseListener, MouseMotionListener, ActionListener{
 
+    //Creates all jcombonents
     GamePanel help_game_panel = new GamePanel();
     HelpQuestionPanel help_question_panel = new HelpQuestionPanel();
     JPanel textPanel1 = new JPanel();
@@ -49,6 +50,7 @@ public class HelpPanel extends JPanel implements MouseListener, MouseMotionListe
     JButton backButton = new JButton("Back");
 
 
+    //Constructor for help panel
     public HelpPanel(){
         this.setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
         this.setPreferredSize(new Dimension(1280, 720));
@@ -145,6 +147,7 @@ public class HelpPanel extends JPanel implements MouseListener, MouseMotionListe
     }
 
 
+    //Card flipping animation
     @Override
     public void mouseClicked(MouseEvent e) {
         Game.cardClick(e);
@@ -175,6 +178,7 @@ public class HelpPanel extends JPanel implements MouseListener, MouseMotionListe
     }
 
 
+    //Switch screens whenever next or back button is pressed
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == nextButton){
