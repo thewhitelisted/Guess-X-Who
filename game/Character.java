@@ -6,10 +6,11 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 
 import javax.imageio.ImageIO;
 
-/** 
+/**
  * <h1>Character</h1>
  * A character class that stores all the information about a character<br>
  * Contains code to import character data from a csv file<br>
@@ -143,28 +144,31 @@ public class Character {
     public Gender gender;
     public boolean isFlipped = false;
     public boolean flipping = false;
-    
+
     /**
      * <h1>isFlipped</h1>
      * Checks if the card is flipped or not<br>
+     * 
      * @return flip state of the card<br>
      */
-    public boolean isFlipped(){
+    public boolean isFlipped() {
         return isFlipped;
     }
 
     /**
      * <h1>setFlipped</h1>
      * Sets the flip state of the card<br>
+     * 
      * @param flipped
      */
-    public void setFlipped(boolean flipped){
+    public void setFlipped(boolean flipped) {
         isFlipped = flipped;
     }
 
     /**
      * <h1>importCharacters</h1>
      * Imports all the characters from a csv file<br>
+     * 
      * @return an array of characters<br>
      */
     public static Character[] importCharacters() {
@@ -172,6 +176,7 @@ public class Character {
         try {
             br = new BufferedReader(new FileReader("game/characters.csv"));
         } catch (FileNotFoundException e) {
+            br = new BufferedReader(new InputStreamReader(Character.class.getResourceAsStream("characters.csv")));
         }
 
         Character[] characters = new Character[25];
@@ -182,7 +187,7 @@ public class Character {
         try {
             while ((line = br.readLine()) != null) {
                 character = line.split(",");
-                
+
                 String name = character[0];
                 BufferedImage icon = null;
                 try {
@@ -212,6 +217,7 @@ public class Character {
     /**
      * <h1>Character</h1>
      * Constructor for the character class<br>
+     * 
      * @param name
      * @param imgIcon
      * @param hairColour
